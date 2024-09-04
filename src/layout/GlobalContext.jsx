@@ -14,9 +14,7 @@ export const GlobalProvider = ({ children }) => {
     // gnb 메뉴 데이터 조회
     const getGnb = async () => {
       try {
-        console.log(`${process.env.VITE_PROD_API_URL}`);
         const result = await AxiosInstance.get("/api/v1/ui/gnb");
-
         return result.data.data;
       } catch (error) {
         console.error("Error fetching gnb:", error);

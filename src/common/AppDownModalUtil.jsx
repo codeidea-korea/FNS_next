@@ -18,6 +18,11 @@ const GlobalAppDownModal = () => {
 
   setModalOpen = setIsOpen;
 
+  if (typeof window === "undefined") {
+    // 서버사이드 렌더링일 때는 아무것도 렌더링하지 않음
+    return null;
+  }
+
   if (isMobileFn()) {
     // 모바일용 모달
     return ReactDOM.createPortal(

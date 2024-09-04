@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React components
 import "swiper/css"; // Import Swiper styles
@@ -5,7 +6,7 @@ import { useGlobalContext } from "../../layout/GlobalContext";
 import { showLoadingAnimation } from "../../common/CommonUtils.jsx";
 import { openAppDownModal, isMobileFn } from "../../common/AppDownModalUtil";
 import { clickUseApp } from "../../common/CommonUtils";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 const Header = ({ title, gnbHide, isContainGnb }) => {
