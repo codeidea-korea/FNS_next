@@ -1,4 +1,4 @@
-import Home from "@/page/main/Home";
+import BaseLayout from "@/layout/BaseLayout";
 
 const getMetaInfo = (originKey) => {
   let title = "";
@@ -69,6 +69,6 @@ export const generateViewport = () => {
   };
 };
 
-export default function Page() {
-  return <Home />;
+export default function HomeLayout({ children }) {
+  return <BaseLayout gnbHide={false}>{children}</BaseLayout>;
 }

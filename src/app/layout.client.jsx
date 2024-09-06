@@ -6,7 +6,6 @@ import LottieLogo from "../assets/json/logo.json";
 import ScrollToTop from "@/components/ScrollTop";
 import MainNavigate from "@/components/MainNavigate";
 import { GlobalProvider } from "@/layout/GlobalContext";
-import BaseLayout from "@/layout/BaseLayout";
 
 export const ClientLayout = ({ children }) => {
   useEffect(() => {
@@ -22,9 +21,7 @@ export const ClientLayout = ({ children }) => {
         <Lottie className="lottie_logo" animationData={LottieLogo} />
       </div>
       <ScrollToTop />
-      <GlobalProvider>
-        <BaseLayout>{children}</BaseLayout>
-      </GlobalProvider>
+      <GlobalProvider>{children}</GlobalProvider>
     </>
   );
 };
