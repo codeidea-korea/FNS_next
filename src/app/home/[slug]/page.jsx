@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
     "https://fns-renew.codeidea.io/home/" + params.slug
   );
 
-  makeMetadata(title, description, url);
+  return makeMetadata(title, description, url);
 }
 
 export const generateViewport = () => {
