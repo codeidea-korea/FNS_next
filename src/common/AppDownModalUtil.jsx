@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { clickUseApp } from "../common/CommonUtils";
 
@@ -11,6 +11,9 @@ let setModalOpen;
 const GlobalAppDownModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true));
+
   const clickUseAppEvent = () => {
     clickUseApp();
     closeAppDownModal();
@@ -18,8 +21,8 @@ const GlobalAppDownModal = () => {
 
   setModalOpen = setIsOpen;
 
-  if (typeof window === "undefined") {
-    // 서버사이드 렌더링일 때는 아무것도 렌더링하지 않음
+  if (!isClient) {
+    // SSR 중에는 null을 반환하여 마크업 불일치를 방지
     return null;
   }
 
@@ -164,11 +167,6 @@ export const closeAppDownModal = () => {
 };*/
 
 export const isMobileFn = () => {
-  if (typeof window === "undefined") {
-    // 서버사이드 렌더링 중일 경우 false 반환
-    return;
-  }
-
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   return /iPhone|iPad|iPod|Android/i.test(userAgent);
 };
