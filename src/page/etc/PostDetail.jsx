@@ -160,7 +160,7 @@ const PostDetail = () => {
   }, [isAlertShown]);
 
   const goMain = () => {
-    navigate.push("home/10001");
+    navigate.push("/home/10001");
   };
 
   return (
