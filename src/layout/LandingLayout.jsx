@@ -9,7 +9,11 @@ import { clickUseApp } from "../common/CommonUtils";
 import "../assets/css/landing.css";
 
 const LandingLayout = ({ children }) => {
-  const [scT, setScT] = useState(window.scrollY);
+  const [scT, setScT] = useState(null);
+
+  useEffect(() => {
+    setScT(window.scrollY);
+  }, []);
 
   useEffect(() => {
     document.body.style.width = "100%";

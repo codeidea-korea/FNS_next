@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { openAppDownModal } from "../../common/AppDownModalUtil";
 import { componentMap } from "../../common/componentMap";
