@@ -109,7 +109,7 @@ const TopicDetail = () => {
   }, [lastScroll]);
 
   const goMain = () => {
-    navigate("home/10001");
+    navigate.push("home/10001");
   };
 
   const scrollHandle = () => {
@@ -279,13 +279,6 @@ const TopicDetail = () => {
     <>
       {data && filters?.length > 0 && groups?.length > 0 && (
         <>
-          {/* <Metatag
-            title={key + " | 패션앤스타일 (Fashion & Style)" ?? ""}
-            desc={metaDesc ?? ""}
-            image={data.vw_image_url ?? ""}
-            date={data?.created_at ?? ""}
-          /> */}
-
           <div className="detail_top">
             {/* 단독 페이지인데 뒤로가기가 필요한가? */}
             <div className="btn_wrap">
