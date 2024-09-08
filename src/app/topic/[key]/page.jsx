@@ -2,7 +2,7 @@ import AxiosInstance from "@/common/AxiosInstance";
 import TopicDetail from "@/page/etc/TopicDetail";
 import { redirect } from "next/navigation";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params: { key } }) {
   try {
     const res = await AxiosInstance.get(
       `/api/v1/ui/viewpage/topic_preview_name/${key}`
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
         .join(" ") + " ";
 
     return {
-      title: params.key + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      title: key + " | 패션앤스타일 (Fashion & Style)" ?? "",
       description: metaDesc,
       image: data.vw_image_url ?? "",
       date: data?.created_at ?? "",

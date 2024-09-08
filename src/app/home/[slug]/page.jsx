@@ -12,6 +12,10 @@ export async function generateMetadata({ params }) {
   return makeMetadata(title, description, url);
 }
 
+export async function generateStaticParams() {
+  return [{ slug: "10001" }, { slug: "10002" }, { slug: "10003" }];
+}
+
 export const generateViewport = () => {
   return {
     width: "device-width",
