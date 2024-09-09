@@ -1,20 +1,30 @@
 "use client";
 
 import { GlobalContext } from "@/context/GlobalContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
-import { clickUseApp, isMobileFn } from "@/utils/common";
+import { clickUseApp } from "@/utils/common";
 
 export default function AppDownloadModal() {
   const { deepLink } = useContext(GlobalContext);
   const { show, close } = useContext(AppDownloadModalContext);
+  const [isMobile, setIsMobile] = useState(false);
 
-  function clickUseAppEvent(): void {
+  // 클라이언트에서만 모바일 여부를 확인
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(isMobileFn());
+    }
+  }, []);
+
+  function clickUseAppEvent() {
     clickUseApp(deepLink);
     close();
   }
 
-  if (isMobileFn()) {
+  if (!show) return null;
+
+  if (isMobile) {
     return (
       <div className={"modal_wrap " + (show ? "open" : "")}>
         <div className="modal_bg" onClick={close}></div>
@@ -67,3 +77,12 @@ export default function AppDownloadModal() {
     );
   }
 }
+
+// 클라이언트에서만 동작하도록 수정된 함수
+export const isMobileFn = () => {
+  if (typeof navigator !== "undefined") {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /iPhone|iPad|iPod|Android/i.test(userAgent);
+  }
+  return false; // 서버 측에서는 항상 false 반환
+};

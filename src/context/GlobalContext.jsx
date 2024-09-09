@@ -1,32 +1,22 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getApi } from "@/utils/apis";
 
-interface GlobalContextType {
-  gnbs: GnbType[];
-  deepLink: string;
-  setDeepLink: (deepLink: string) => void;
-}
-
-export const GlobalContext = createContext<GlobalContextType>({
+export const GlobalContext = createContext({
   gnbs: [],
   deepLink: "",
   setDeepLink: () => {},
 });
 
-export const GlobalContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+export const GlobalContextProvider = ({ children }) => {
   const [deepLink, setDeepLink] = useState("");
-  const [gnbs, setGnbs] = useState<GnbType[]>([]);
+  const [gnbs, setGnbs] = useState([]);
 
   useEffect(() => {
     const run = async () => {
       try {
-        const response = await getApi<GnbType[]>("/api/v1/ui/gnb");
+        const response = await getApi("/api/v1/ui/gnb");
         setGnbs(response.data.data ?? []);
       } catch (error) {
         console.error("Error fetching gnb:", error);

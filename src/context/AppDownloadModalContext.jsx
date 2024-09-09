@@ -2,28 +2,16 @@
 
 import { createContext, ReactNode, useState } from "react";
 
-interface AppDownloadModalContextType {
-  show: boolean;
-  open: () => void;
-  close: () => void;
-}
+export const AppDownloadModalContext = createContext({
+  show: false,
+  open: () => {},
+  close: () => {},
+});
 
-export const AppDownloadModalContext =
-  createContext<AppDownloadModalContextType>({
-    show: false,
-    open: () => {},
-    close: () => {},
-  });
-
-export function AppDownloadModalContextProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function AppDownloadModalContextProvider({ children }) {
   const [show, setShow] = useState(false);
 
   function open() {
-    console.log("hihi");
     const { body } = document;
     if (!body.getAttribute("scrollY")) {
       const pageY = window.scrollY;

@@ -7,10 +7,8 @@ import { useParams, useRouter } from "next/navigation";
 import { clearMetaText } from "@/common/CommonUtils";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
-const TagDetail = (
-  appDownloadModalContextType = useContext(AppDownloadModalContext),
-) => {
-  const { open } = appDownloadModalContextType;
+const TagDetail = () => {
+  const { open } = useContext(AppDownloadModalContext);
   const navigate = useRouter();
   const { key } = useParams();
 

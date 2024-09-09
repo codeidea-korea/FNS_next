@@ -4,9 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React compo
 import "swiper/css"; // Import Swiper styles
 import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
-import { clickUseApp, isMobileFn } from "@/utils/common";
+import { clickUseApp } from "@/utils/common";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { GlobalContext } from "@/context/GlobalContext";
+import { isMobileFn } from "@/components/common/AppDownloadModal";
 
 const Header = ({ title, gnbHide, isContainGnb }) => {
   const { open } = useContext(AppDownloadModalContext);

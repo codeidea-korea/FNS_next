@@ -1,24 +1,16 @@
 "use client";
 
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../page/common/Header";
 import Quickmenu from "../page/common/Quickmenu";
 import { usePathname } from "next/navigation";
-import AppDownloadModal from "@/components/common/AppDownloadModal";
-import { AppDownloadModalContextProvider } from "@/context/AppDownloadModalContext";
 import { GlobalContext } from "@/context/GlobalContext";
 
-interface Props {
-  title?: string;
-  gnbHide?: boolean;
-  children: ReactNode;
-}
-
-const BaseLayout = (props: Props) => {
+const BaseLayout = (props) => {
   const { gnbs } = useContext(GlobalContext);
   const url = usePathname();
   const [usGnbHide, setUsGnbHide] = useState(props.gnbHide);
-  const [usIsContainGnb, setUsIsContainGnb] = useState<boolean | null>(null);
+  const [usIsContainGnb, setUsIsContainGnb] = useState(null);
 
   useEffect(() => {
     if (gnbs && gnbs.length > 0) {

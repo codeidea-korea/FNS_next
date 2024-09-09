@@ -5,8 +5,8 @@ import Link from "next/link";
 import { clickUseApp } from "@/common/CommonUtils";
 
 import "../assets/css/landing.css";
-import { isMobileFn } from "@/utils/common";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { isMobileFn } from "@/components/common/AppDownloadModal";
 
 const LandingLayout = ({ children }) => {
   const [scT, setScT] = useState(null);
@@ -109,12 +109,9 @@ const LandingLayout = ({ children }) => {
 
   /* 앱으로 보기 버튼 클릭 */
   const clickUseAppBtn = () => {
-    console.log("hi");
     if (isMobileFn()) {
-      console.log("mo");
       clickUseApp();
     } else {
-      console.log("not mo");
       open();
     }
   };

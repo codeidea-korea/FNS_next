@@ -1,7 +1,8 @@
 "use client";
 import React, { useContext } from "react";
-import { clickUseApp, isMobileFn } from "@/utils/common";
+import { clickUseApp } from "@/utils/common";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { isMobileFn } from "@/components/common/AppDownloadModal";
 
 export default function Mypage() {
   const { open } = useContext(AppDownloadModalContext);
