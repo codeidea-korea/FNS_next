@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import {
-  closeAppDownModal,
-  openAppDownModal,
-} from "../../common/AppDownModalUtil";
+import React, { useContext, useEffect, useState } from "react";
 import AxiosInstance from "../../common/AxiosInstance";
 import Post from "../../components/common/Post";
 import RecommendTopics from "../../components/common/RecommendTopics";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const Foryou = () => {
+  const { open } = useContext(AppDownloadModalContext);
   const [posts01, setPosts01] = useState([]);
   const [posts02, setPosts02] = useState([]);
   const [topics, setTopics] = useState([]);
@@ -31,7 +29,7 @@ const Foryou = () => {
   useEffect(() => {
     const handleScroll = (event) => {
       const restrictedElement = document.querySelector(
-        "section.topic_list.same_type.type02"
+        "section.topic_list.same_type.type02",
       );
 
       if (restrictedElement) {
@@ -50,7 +48,7 @@ const Foryou = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          openAppDownModal();
+          open();
           setIsAlertShown(true);
         }
       }
@@ -71,7 +69,7 @@ const Foryou = () => {
             {posts01.map((posts01Item, posts01Idx) => (
               <Post
                 key={posts01Idx}
-                openAppDownModalFn={openAppDownModal}
+                openAppDownModalFn={open}
                 post={posts01Item}
                 showComment={false}
               />
@@ -79,14 +77,14 @@ const Foryou = () => {
 
             <RecommendTopics
               key={"recommendTopics-key"}
-              openAppDownModalFn={openAppDownModal}
+              openAppDownModalFn={open}
               topics={topics}
             />
 
             {posts02.map((posts02Item, posts02Idx) => (
               <Post
                 key={posts02Idx}
-                openAppDownModalFn={openAppDownModal}
+                openAppDownModalFn={open}
                 post={posts02Item}
                 showComment={false}
               />

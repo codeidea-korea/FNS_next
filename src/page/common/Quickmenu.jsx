@@ -1,38 +1,22 @@
-import {
-  clickUseApp,
-  showLoadingAnimation,
-} from "../../common/CommonUtils.jsx";
-import { isMobileFn, openAppDownModal } from "../../common/AppDownModalUtil";
+import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
+import { useContext } from "react";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
-const Quickmenu = () => {
+export default function Quickmenu() {
+  const { open } = useContext(AppDownloadModalContext);
   const url = usePathname();
   const navigate = useRouter();
 
   // 퀵 메뉴 클릭 이벤트
-  const clickQuickMenu = (link) => {
-    // 로딩
+  function clickQuickMenu(link) {
     showLoadingAnimation();
-
     navigate.push(link);
-  };
-
-  /* 앱으로 보기 버튼 클릭 */
-  const clickUseAppBtn = () => {
-    if (isMobileFn()) {
-      clickUseApp();
-    } else {
-      openAppDownModal();
-    }
-  };
+  }
 
   return (
     <div className="quick_menu">
-      <div
-        className="appdown_box"
-        onClick={clickUseAppBtn}
-        style={{ cursor: "pointer" }}
-      >
+      <div className="appdown_box" onClick={open} style={{ cursor: "pointer" }}>
         <img src="/img/fns.svg" alt="패션&스타일 로고" />
         <span>
           데일리 패션과 코디, 최신 뉴스를 만나보세요!
@@ -81,5 +65,4 @@ const Quickmenu = () => {
       </ul>
     </div>
   );
-};
-export default Quickmenu;
+}

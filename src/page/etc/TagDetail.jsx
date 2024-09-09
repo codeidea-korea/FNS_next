@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { openAppDownModal } from "../../common/AppDownModalUtil";
-import { componentMap } from "../../common/componentMap";
+import React, { useContext, useEffect, useState } from "react";
+import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "../../common/AxiosInstance";
-import { useRouter, useParams } from "next/navigation";
-import { clearMetaText } from "../../common/CommonUtils";
+import { useParams, useRouter } from "next/navigation";
+import { clearMetaText } from "@/common/CommonUtils";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
-const TagDetail = () => {
+const TagDetail = (
+  appDownloadModalContextType = useContext(AppDownloadModalContext),
+) => {
+  const { open } = appDownloadModalContextType;
   const navigate = useRouter();
   const { key } = useParams();
 
@@ -42,7 +45,7 @@ const TagDetail = () => {
 
             // 태그 고유의 key값 추출
             setTagId(
-              contents.vw_groups[0]?.grp_items[0]?.itm_data[0]?.tag_id ?? ""
+              contents.vw_groups[0]?.grp_items[0]?.itm_data[0]?.tag_id ?? "",
             );
 
             contents.vw_groups.forEach((vwGroup, vwGroupIdx) => {
@@ -58,7 +61,7 @@ const TagDetail = () => {
                   grpItem.itm_data.forEach((id) => {
                     const filteredImages = id.post_images.filter(
                       (postImage) =>
-                        postImage?.post_image_user_tags[0] === userAccount
+                        postImage?.post_image_user_tags[0] === userAccount,
                     );
 
                     if (filteredImages.length > 0) {
@@ -77,8 +80,8 @@ const TagDetail = () => {
                       <DynamicFrameComponent
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
-                        openAppDownModalFn={openAppDownModal}
-                      />
+                        openAppDownModalFn={open}
+                      />,
                     );
                   }
                 }
@@ -131,7 +134,7 @@ const TagDetail = () => {
   useEffect(() => {
     const handleScroll = () => {
       const restrictedElement = document.querySelector(
-        ".main.section_box section"
+        ".main.section_box section",
       );
 
       if (restrictedElement) {
@@ -150,7 +153,7 @@ const TagDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          openAppDownModal();
+          open();
           setIsAlertShown(true);
         }
       }
@@ -212,7 +215,7 @@ const TagDetail = () => {
 
             <section className={"visual_type"}>
               <div className={`topic_thumbnail`}>
-                <a style={{ cursor: "pointer" }} onClick={openAppDownModal}>
+                <a style={{ cursor: "pointer" }} onClick={open}>
                   <img
                     src={data.vw_image_url}
                     alt={data.vw_title + " 이미지"}
@@ -225,23 +228,12 @@ const TagDetail = () => {
                 </a>
               </div>
             </section>
-
-            {/* 팔로잉 시 클래스 following 추가 */}
-            {/*<button className="follow_btn" onClick={openAppDownModal}>팔로우</button>*/}
           </div>
-
-          {/* 스크롤시 메뉴 */}
           <div className="scroll_tit">
-            {/*<button onClick={() => navigate(-1)} className='prev_btn'>
-                                <img src="/img/prev_arrow.svg" alt="이전페이지로 이동"/>
-                            </button>*/}
             <h3>{data.vw_title}</h3>
-            {/* 팔로잉 시 클래스 following 추가 */}
-            {/*<button className="follow_btn" onClick={openAppDownModal}>팔로우</button>*/}
           </div>
 
           <div className="main section_box">
-            {/* 프레임별 컴포넌트들 조합 */}
             {frameComponents}
 
             {

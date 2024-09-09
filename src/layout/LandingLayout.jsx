@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import GlobalAppDownModal from "../common/AppDownModalUtil";
-import { openAppDownModal, isMobileFn } from "../common/AppDownModalUtil";
-import { clickUseApp } from "../common/CommonUtils";
+import { clickUseApp } from "@/common/CommonUtils";
 
 import "../assets/css/landing.css";
+import { isMobileFn } from "@/utils/common";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const LandingLayout = ({ children }) => {
   const [scT, setScT] = useState(null);
+  const { open } = useContext(AppDownloadModalContext);
 
   useEffect(() => {
     setScT(window.scrollY);
@@ -108,10 +109,13 @@ const LandingLayout = ({ children }) => {
 
   /* 앱으로 보기 버튼 클릭 */
   const clickUseAppBtn = () => {
+    console.log("hi");
     if (isMobileFn()) {
+      console.log("mo");
       clickUseApp();
     } else {
-      openAppDownModal();
+      console.log("not mo");
+      open();
     }
   };
 
@@ -123,16 +127,15 @@ const LandingLayout = ({ children }) => {
             <div className="inner">
               <h1>
                 <a href="/">
-                  <img src="./img/landing/logo.svg" alt="logo" />
+                  <img src="/img/landing/logo.svg" alt="logo" />
                 </a>
               </h1>
               <div className="right_box">
-                {/* <a className="about_link" href="./aboutus.html">회사소개</a> */}
                 <a className="down_btn" href="#" onClick={clickUseAppBtn}>
                   앱 다운로드
                 </a>
                 <a className="ham_icon" href="#">
-                  <img src="./img/landing/ham_icon.svg" alt="" />
+                  <img src="/img/landing/ham_icon.svg" alt="" />
                 </a>
               </div>
             </div>
@@ -141,18 +144,18 @@ const LandingLayout = ({ children }) => {
           <div className="mobile_menu">
             <div className="top_box">
               <a className="ham_icon" href="#">
-                <img src="./img/landing/ham_icon_white.svg" alt="" />
+                <img src="/img/landing/ham_icon_white.svg" alt="" />
               </a>
             </div>
             <a className="down_btn" href="#" onClick={clickUseAppBtn}>
-              앱 다운로드 <img src="./img/landing/right_arrow.svg" alt="" />
+              앱 다운로드 <img src="/img/landing/right_arrow.svg" alt="" />
             </a>
             <div className="menu_box">
               <h4>운영 채널</h4>
               <ul>
                 <li>
                   <a href="#" onClick={moMenuToggle}>
-                    인스타그램 <img src="./img/landing/down_arrow.svg" alt="" />
+                    인스타그램 <img src="/img/landing/down_arrow.svg" alt="" />
                   </a>
                   <ul>
                     <li>
@@ -191,7 +194,7 @@ const LandingLayout = ({ children }) => {
                 </li>
                 <li>
                   <a href="#" onClick={moMenuToggle}>
-                    카카오 <img src="./img/landing/down_arrow.svg" alt="" />
+                    카카오 <img src="/img/landing/down_arrow.svg" alt="" />
                   </a>
                   <ul>
                     <li>
@@ -211,7 +214,7 @@ const LandingLayout = ({ children }) => {
                 </li>
                 <li>
                   <a href="#" onClick={moMenuToggle}>
-                    스레드 <img src="./img/landing/down_arrow.svg" alt="" />
+                    스레드 <img src="/img/landing/down_arrow.svg" alt="" />
                   </a>
                   <ul>
                     <li>
@@ -257,14 +260,14 @@ const LandingLayout = ({ children }) => {
             <div className="inner">
               <div className="fnb">
                 <div className="left_box">
-                  <img src="./img/landing/full_logo.svg" width="144" alt="" />
+                  <img src="/img/landing/full_logo.svg" width="144" alt="" />
                   <div className="sns_link">
                     <a
                       href="https://www.instagram.com/fashionandstyle.official/"
                       target="_blank"
                     >
                       <img
-                        src="./img/landing/sns_insta.png"
+                        src="/img/landing/sns_insta.png"
                         width="24"
                         alt="인스타그램"
                       />
@@ -274,7 +277,7 @@ const LandingLayout = ({ children }) => {
                       target="_blank"
                     >
                       <img
-                        src="./img/landing/sns_face.png"
+                        src="/img/landing/sns_face.png"
                         width="24"
                         alt="페이스북"
                       />
@@ -284,14 +287,14 @@ const LandingLayout = ({ children }) => {
                       target="_blank"
                     >
                       <img
-                        src="./img/landing/sns_link.png"
+                        src="/img/landing/sns_link.png"
                         width="24"
                         alt="카카오스토리"
                       />
                     </a>
                     <a href="http://pf.kakao.com/_vfdPl" target="_blank">
                       <img
-                        src="./img/landing/sns_kakao.png"
+                        src="/img/landing/sns_kakao.png"
                         width="24"
                         alt="카카오톡채널"
                       />
@@ -301,7 +304,7 @@ const LandingLayout = ({ children }) => {
                       target="_blank"
                     >
                       <img
-                        src="./img/landing/sns_email.png"
+                        src="/img/landing/sns_email.png"
                         width="24"
                         alt="스레드"
                       />
@@ -364,7 +367,6 @@ const LandingLayout = ({ children }) => {
           </footer>
         </div>
       </div>
-      <GlobalAppDownModal />
     </>
   );
 };

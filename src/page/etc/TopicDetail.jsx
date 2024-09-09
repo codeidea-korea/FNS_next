@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { openAppDownModal } from "../../common/AppDownModalUtil";
-import { componentMap } from "../../common/componentMap";
-import AxiosInstance from "../../common/AxiosInstance";
+import React, { useContext, useEffect, useState } from "react";
+import { componentMap } from "@/common/componentMap";
+import AxiosInstance from "@/common/AxiosInstance";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { clearMetaText } from "../../common/CommonUtils";
+import { clearMetaText } from "@/common/CommonUtils";
 import { useParams, useRouter } from "next/navigation";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const TopicDetail = () => {
+  const { open } = useContext(AppDownloadModalContext);
   let tempIdx = 0;
   let tempIdx2 = 0;
 
@@ -56,7 +57,7 @@ const TopicDetail = () => {
           gi.itm_data.forEach((id) => {
             const filteredImages = id.post_images.filter(
               (pi) =>
-                pi?.post_image_acc[0]?.post_image_acc_tag[0]?.tag_id === tagId
+                pi?.post_image_acc[0]?.post_image_acc_tag[0]?.tag_id === tagId,
             );
             if (filteredImages.length > 0) {
               id.post_images = filteredImages;
@@ -90,8 +91,8 @@ const TopicDetail = () => {
         data.vw_groups
           .flatMap((group) =>
             group.grp_items.map(
-              (item) => item.itm_data[0]?.post_desc?.split("\n")[0] || ""
-            )
+              (item) => item.itm_data[0]?.post_desc?.split("\n")[0] || "",
+            ),
           )
           .filter((desc) => desc !== "")
           .join(" ") + " ";
@@ -164,7 +165,7 @@ const TopicDetail = () => {
           items.classList.remove("active");
         });
         let slideTarget = btCategory.querySelector(
-          `.swiper-slide[data-target="${target}"]`
+          `.swiper-slide[data-target="${target}"]`,
         );
         slideTarget.classList.add("active");
 
@@ -198,7 +199,7 @@ const TopicDetail = () => {
   const categoryPosition = (target) => {
     const swiper = document.querySelector(".category_swiper");
     const swiperWrap = document.querySelector(
-      ".category_swiper .swiper-wrapper"
+      ".category_swiper .swiper-wrapper",
     );
     const lastSwiper = swiperWrap.querySelector(".swiper-slide:last-of-type");
     const swiperSize = lastSwiper.offsetLeft + lastSwiper.clientWidth; // swiper 전체 길이
@@ -243,7 +244,7 @@ const TopicDetail = () => {
   useEffect(() => {
     const handleScroll = () => {
       const restrictedElement = document.querySelector(
-        ".main.section_box .category_cont"
+        ".main.section_box .category_cont",
       );
 
       if (restrictedElement) {
@@ -262,7 +263,7 @@ const TopicDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          openAppDownModal();
+          open();
           setIsAlertShown(true);
         }
       }
@@ -289,7 +290,7 @@ const TopicDetail = () => {
 
             <section className={"visual_type"}>
               <div className={`topic_thumbnail`}>
-                <a style={{ cursor: "pointer" }} onClick={openAppDownModal}>
+                <a style={{ cursor: "pointer" }} onClick={open}>
                   <img
                     src={data.vw_image_url}
                     alt={data.vw_title + " 이미지"}
@@ -354,7 +355,7 @@ const TopicDetail = () => {
 
                       if (DynamicFrameComponent) {
                         const findFilter = filters.find(
-                          (filter) => filter.vw_flt_itm_id === grpItem.itm_id
+                          (filter) => filter.vw_flt_itm_id === grpItem.itm_id,
                         );
 
                         if (findFilter?.vw_flt_image_url) {
@@ -373,7 +374,7 @@ const TopicDetail = () => {
                           >
                             <DynamicFrameComponent
                               grpItem={grpItem}
-                              openAppDownModalFn={openAppDownModal}
+                              openAppDownModalFn={open}
                             />
                           </div>
                         );

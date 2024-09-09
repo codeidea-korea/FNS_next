@@ -1,16 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React components
 import "swiper/css"; // Import Swiper styles
-import { useGlobalContext } from "../../layout/GlobalContext";
-import { showLoadingAnimation } from "../../common/CommonUtils.jsx";
-import { openAppDownModal, isMobileFn } from "../../common/AppDownModalUtil";
-import { clickUseApp } from "../../common/CommonUtils";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
+import { usePathname, useRouter } from "next/navigation";
+import { clickUseApp, isMobileFn } from "@/utils/common";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const Header = ({ title, gnbHide, isContainGnb }) => {
-  const { gnb } = useGlobalContext();
+  const { open } = useContext(AppDownloadModalContext);
+  const { gnbs } = useContext(GlobalContext);
   const [newGnb, setNewGnb] = useState([]);
   const url = decodeURIComponent(usePathname());
   const navigate = useRouter();
@@ -23,7 +23,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
     setTimeout(() => {
       if (document.querySelector(".gnb_swiper .active")) {
         setLineWidth(
-          document.querySelector(".gnb_swiper .active")?.clientWidth - 32
+          document.querySelector(".gnb_swiper .active")?.clientWidth - 32,
         );
       }
     }, 100);
@@ -34,8 +34,8 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
   }, [url]);
 
   useEffect(() => {
-    if (gnb?.length > 0) {
-      const copyGnb = [...gnb];
+    if (gnbs?.length > 0) {
+      const copyGnb = [...gnbs];
 
       /* home 메뉴인데 gnb에 없는 메뉴이면 9번째 메뉴 생성 */
       if (gnbHide === false && isContainGnb === false) {
@@ -43,7 +43,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
         const pathSplitSlash = pathname.split("/");
         const key1 = pathSplitSlash[pathSplitSlash.length - 2];
         let key2 = decodeURIComponent(
-          pathSplitSlash[pathSplitSlash.length - 1]
+          pathSplitSlash[pathSplitSlash.length - 1],
         );
         key2 = key2.replaceAll("-", " ");
 
@@ -65,7 +65,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
 
       setNewGnb(copyGnb);
     }
-  }, [gnb, url, isContainGnb]);
+  }, [gnbs, url, isContainGnb]);
 
   // gnb swiper가 만들어 졌을 때 실행
   useEffect(() => {
@@ -73,7 +73,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
       // active된 gnb swiper로 슬라이드를 이동시킴
       const slides = document.querySelectorAll(".swiper-slide");
       const activeSlideIndex = Array.from(slides).findIndex((slide) =>
-        slide.classList.contains("active")
+        slide.classList.contains("active"),
       );
       swiperInstance.slideTo(activeSlideIndex, 1);
     }
@@ -204,7 +204,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
     if (isMobileFn()) {
       clickUseApp();
     } else {
-      openAppDownModal();
+      open();
     }
   };
 
@@ -253,7 +253,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
                     className={getMenuClassName(
                       item.gnb_vw_id,
                       item.gnb_param_value,
-                      item.gnb_name
+                      item.gnb_name,
                     )}
                     onClick={cateClick}
                   >
@@ -264,7 +264,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
                           item.gnb_vw_type_cd,
                           item.gnb_vw_id,
                           item.gnb_param_value,
-                          item.gnb_name
+                          item.gnb_name,
                         )
                       }
                     >
@@ -272,7 +272,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
                       {getUnderLine(
                         item.gnb_vw_id,
                         item.gnb_param_value,
-                        item.gnb_name
+                        item.gnb_name,
                       )}
                     </a>
                   </SwiperSlide>

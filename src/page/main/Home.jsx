@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useGlobalContext } from "../../layout/GlobalContext";
-import { getApiUrl } from "../../common/CommonUtils";
+import { GlobalContext } from "@/context/GlobalContext";
+import { getApiUrl } from "@/common/CommonUtils";
 import Main from "../../page/main/Main";
 
 const Home = () => {
-  const { gnb } = useGlobalContext();
+  const { gnbs } = useContext(GlobalContext);
   const url = usePathname();
   const [apiUrl, setApiUrl] = useState(null);
 
   useEffect(() => {
-    if (gnb && gnb.length > 0) {
-      getApiUrl(gnb).then((res) => {
+    if (gnbs && gnbs.length > 0) {
+      getApiUrl(gnbs).then((res) => {
         if (res === "/") {
           window.location.href = "/home/10001";
         } else {
@@ -21,7 +21,7 @@ const Home = () => {
         }
       });
     }
-  }, [url, gnb]);
+  }, [url, gnbs]);
 
   return (
     <>

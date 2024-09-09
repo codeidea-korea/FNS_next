@@ -16,6 +16,7 @@ export const metadata = {
   image: "",
   robots: "index, follow",
   other: {
+    "google-site-verification": "-vG60emgcOR17vO0Zmz0efJNHPBZt3BmR1cdQ-YG6nw",
     copyright:
       "Copyrights © 2024 패션앤스타일컴퍼니 주식회사 All Rights Reserved",
     author: "패션앤스타일컴퍼니 주식회사",

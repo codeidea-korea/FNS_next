@@ -1,15 +1,16 @@
 "use client";
-import React from "react";
-import { clickUseApp } from "../../common/CommonUtils.jsx";
-import { isMobileFn, openAppDownModal } from "../../common/AppDownModalUtil";
+import React, { useContext } from "react";
+import { clickUseApp, isMobileFn } from "@/utils/common";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
-const Mypage = () => {
-  /* 앱으로 보기 버튼 클릭 */
+export default function Mypage() {
+  const { open } = useContext(AppDownloadModalContext);
+
   const clickUseAppBtn = () => {
     if (isMobileFn()) {
       clickUseApp();
     } else {
-      openAppDownModal();
+      open();
     }
   };
 
@@ -45,6 +46,4 @@ const Mypage = () => {
       </div>
     </>
   );
-};
-
-export default Mypage;
+}

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { formatDateString } from "../../common/CommonUtils";
+import { formatDateString } from "@/common/CommonUtils";
 
 /* 포스트 상세 */
 const Post = ({ openAppDownModalFn, post, showComment }) => {
@@ -69,7 +69,7 @@ const Post = ({ openAppDownModalFn, post, showComment }) => {
           });
         },
         // 비디오의 50% 이상이 보여야 재생됨
-        { threshold: 0.5 }
+        { threshold: 0.5 },
       );
 
       observer.observe(video);

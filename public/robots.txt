@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.fashionandstyle.com/
+
+# Sitemaps
+Sitemap: https://www.fashionandstyle.com/sitemap.xml

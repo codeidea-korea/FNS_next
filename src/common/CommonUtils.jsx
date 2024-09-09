@@ -91,26 +91,10 @@ export const showLoadingAnimation = () => {
       </div>
     );
   };
-
-  // TODO 페이지 이동간 로딩처리 임시 제거
-  /*const div = document.createElement('div');
-    document.body.appendChild(div);
-
-    const root = createRoot(div);
-    root.render(<LoadingComponent/>);
-
-    // 0.6초 후 로딩 애니메이션 숨기기 및 DOM 정리
-    setTimeout(() => {
-        root.unmount();
-        document.body.removeChild(div);
-    }, 600);*/
 };
 
 /* 앱 이용하기 버튼 클릭시 */
 export const clickUseApp = () => {
-  // console.log(location.pathname);
-
-  // 사용자 에이전트를 사용하여 모바일 여부 및 운영 체제 체크
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
   const isAndroid = /Android/i.test(userAgent);
@@ -123,7 +107,7 @@ export const clickUseApp = () => {
     const startTime = new Date().getTime();
 
     // 앱 연결 시도
-    window.open(import.meta.env.VITE_APP_URL, "_blank");
+    window.open(process.env.NEXT_PUBLIC_APP_URL, "_blank");
 
     // 일정 시간 후에 앱이 열리지 않았으면 대체 동작 수행
     setTimeout(() => {
@@ -133,20 +117,23 @@ export const clickUseApp = () => {
       if (endTime - startTime < 2000) {
         if (isAndroid) {
           // Android 기기에서 앱이 열리지 않으면 Android 스토어로 이동
-          window.open(import.meta.env.VITE_ANDROID_MOBILE_STORE_URL, "_blank");
+          window.open(
+            process.env.NEXT_PUBLIC_ANDROID_MOBILE_STORE_URL,
+            "_blank",
+          );
         } else if (isIOS) {
           // iOS 기기에서 앱이 열리지 않으면 iOS 스토어로 이동
-          window.open(import.meta.env.VITE_IOS_MOBILE_STORE_URL, "_blank");
+          window.open(process.env.NEXT_PUBLIC_IOS_MOBILE_STORE_URL, "_blank");
         }
       }
     }, 2000); // 앱 실행 대기 시간
   } else {
     if (isWindows) {
       // 웹 브라우저에서 Windows인 경우 스토어로 이동
-      window.open(import.meta.env.VITE_WINDOW_STORE_URL, "_blank");
+      window.open(process.env.NEXT_PUBLIC_WINDOW_STORE_URL, "_blank");
     } else if (isMac) {
       // 웹 브라우저에서 macOS인 경우 스토어로 이동
-      window.open(import.meta.env.VITE_MAC_STORE_URL, "_blank");
+      window.open(process.env.NEXT_PUBLIC_MAC_STORE_URL, "_blank");
     }
   }
 };

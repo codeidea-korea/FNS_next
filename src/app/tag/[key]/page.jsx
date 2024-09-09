@@ -1,10 +1,12 @@
 import { clearMetaText } from "@/common/CommonUtils";
 import TagDetail from "@/page/etc/TagDetail";
+import { redirect } from "next/navigation";
+import AxiosInstance from "@/common/AxiosInstance";
 
 export async function generateMetadata({ params: { key } }) {
   try {
     const res = await AxiosInstance.get(
-      `/api/v1/ui/view/tag_preview_name/${key}`
+      `/api/v1/ui/view/tag_preview_name/${key}`,
     );
     const data = res.data.data;
 
@@ -30,18 +32,6 @@ export async function generateMetadata({ params: { key } }) {
   } catch (error) {
     redirect("/home/10001");
   }
-}
-
-{
-  /* <Metatag
-            title={key + " | 패션앤스타일 (Fashion & Style)" ?? ""}
-            desc={metaDesc ?? ""}
-            image={
-              data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url_def ??
-              data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1
-            }
-            date={data?.created_at ?? ""}
-          /> */
 }
 
 export default function Page() {

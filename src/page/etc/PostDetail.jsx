@@ -1,26 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { openAppDownModal } from "../../common/AppDownModalUtil";
-import { componentMap } from "../../common/componentMap";
+import React, { useContext, useEffect, useState } from "react";
+import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "../../common/AxiosInstance";
-import { useRouter, useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Post from "../../components/common/Post";
-import {
-  getMetaUrl,
-  getOriginKey,
-  clearMetaText,
-} from "../../common/CommonUtils";
+import { clearMetaText } from "@/common/CommonUtils";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const PostDetail = () => {
   const navigate = useRouter();
+  const { open } = useContext(AppDownloadModalContext);
   const { yy, mm, dd, key } = useParams();
 
   const [isAlertShown, setIsAlertShown] = useState(false);
   const [frameComponents, setFrameComponents] = useState([]);
   const [post, setPost] = useState({});
   const [suggest, setSuggest] = useState({});
-  const [metaUrl, setMetaUrl] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDesc, setMetaDesc] = useState("");
 
@@ -54,7 +50,7 @@ const PostDetail = () => {
                   const filteredImages = id.post_images.filter(
                     (pi) =>
                       pi?.post_image_acc[0]?.post_image_acc_tag[0]?.tag_id ===
-                      itm_link_id
+                      itm_link_id,
                   );
 
                   if (filteredImages.length > 0) {
@@ -75,8 +71,8 @@ const PostDetail = () => {
                     <DynamicFrameComponent
                       key={`component_${vwGroupIdx}_${grpItemIdx}`}
                       grpItem={grpItem}
-                      openAppDownModalFn={openAppDownModal}
-                    />
+                      openAppDownModalFn={open}
+                    />,
                   );
                 }
               }
@@ -103,7 +99,7 @@ const PostDetail = () => {
       /* meta title */
       let tempMetaTitle = post.post_desc?.split("\n")[0];
       setMetaTitle(
-        clearMetaText(tempMetaTitle) + " | 패션앤스타일 (Fashion & Style)"
+        clearMetaText(tempMetaTitle) + " | 패션앤스타일 (Fashion & Style)",
       );
 
       /* meta desc */
@@ -127,7 +123,7 @@ const PostDetail = () => {
   useEffect(() => {
     const handleScroll = () => {
       const restrictedElement = document.querySelector(
-        ".main.section_box .post_frame"
+        ".main.section_box .post_frame",
       );
 
       if (restrictedElement) {
@@ -146,7 +142,7 @@ const PostDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          openAppDownModal();
+          open();
           setIsAlertShown(true);
         }
       }
@@ -168,11 +164,7 @@ const PostDetail = () => {
       {post && post.post_images?.length > 0 && (
         <>
           <div className="main section_box">
-            <Post
-              openAppDownModalFn={openAppDownModal}
-              post={post}
-              showComment={true}
-            />
+            <Post openAppDownModalFn={open} post={post} showComment={true} />
 
             {frameComponents}
           </div>

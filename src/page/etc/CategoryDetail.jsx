@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { openAppDownModal } from "../../common/AppDownModalUtil";
-import { componentMap } from "../../common/componentMap";
+import React, { useContext, useEffect, useState } from "react";
+import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "../../common/AxiosInstance";
 import { useRouter, useParams } from "next/navigation";
-import { clearMetaText } from "../../common/CommonUtils";
+import { clearMetaText } from "@/common/CommonUtils";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const CategoryDetail = () => {
+  const { open } = useContext(AppDownloadModalContext);
   const navigate = useRouter();
   const { key } = useParams();
 
@@ -51,7 +52,7 @@ const CategoryDetail = () => {
                   grpItem.itm_data.forEach((id) => {
                     const filteredImages = id.post_images.filter(
                       (postImage) =>
-                        postImage?.post_image_user_tags[0] === userAccount
+                        postImage?.post_image_user_tags[0] === userAccount,
                     );
 
                     if (filteredImages.length > 0) {
@@ -70,8 +71,8 @@ const CategoryDetail = () => {
                       <DynamicFrameComponent
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
-                        openAppDownModalFn={openAppDownModal}
-                      />
+                        openAppDownModalFn={open}
+                      />,
                     );
                   }
                 }
@@ -115,7 +116,7 @@ const CategoryDetail = () => {
   useEffect(() => {
     const handleScroll = () => {
       const restrictedElement = document.querySelector(
-        ".main.section_box .topic_list"
+        ".main.section_box .topic_list",
       );
 
       if (restrictedElement) {
@@ -134,7 +135,7 @@ const CategoryDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          openAppDownModal();
+          open();
           setIsAlertShown(true);
         }
       }
