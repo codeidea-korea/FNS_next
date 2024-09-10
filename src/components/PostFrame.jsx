@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Modal from "@/page/common/Modal";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const PostFrame = ({ data, descOpen }) => {
   const desc = data.desc.split("<br/>");
   const [swiperActive, setSwiperActive] = useState(0);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { modalId, openModal, closeModal, clickModalEvent } = Modal();
 
   const descHandle = (e) => {
@@ -18,14 +19,14 @@ const PostFrame = ({ data, descOpen }) => {
       // 더보기 버튼 있을때
       if (descBox.classList.contains("open")) {
         // desc 모든텍스트 다 보일때
-        navigate("/posts");
+        router.push("/posts");
       } else {
         // desc 텍스트 일부 가려져있을때
         e.currentTarget.querySelector(".desc").classList.add("open");
       }
     } else {
       // 더보기 버튼 없을때
-      navigate("/posts");
+      router.push("/posts");
     }
   };
 

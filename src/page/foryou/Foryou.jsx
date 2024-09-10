@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import AxiosInstance from "../../common/AxiosInstance";
-import Post from "../../components/common/Post";
-import RecommendTopics from "../../components/common/RecommendTopics";
+import AxiosInstance from "@/common/AxiosInstance";
+import Post from "@/components/common/Post";
+import RecommendTopics from "@/components/common/RecommendTopics";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const Foryou = () => {

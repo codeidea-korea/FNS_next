@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export async function generateMetadata({ params: { key } }) {
   try {
     const res = await AxiosInstance.get(
-      `/api/v1/ui/viewpage/topic_preview_name/${key}`
+      `/api/v1/ui/viewpage/topic_preview_name/${key}`,
     );
     const data = res.data.data;
 
@@ -20,14 +20,15 @@ export async function generateMetadata({ params: { key } }) {
       data.vw_groups
         .flatMap((group) =>
           group.grp_items.map(
-            (item) => item.itm_data[0]?.post_desc?.split("\n")[0] || ""
-          )
+            (item) => item.itm_data[0]?.post_desc?.split("\n")[0] || "",
+          ),
         )
         .filter((desc) => desc !== "")
         .join(" ") + " ";
 
     return {
-      title: key + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      title:
+        decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
       description: metaDesc,
       image: data.vw_image_url ?? "",
       date: data?.created_at ?? "",

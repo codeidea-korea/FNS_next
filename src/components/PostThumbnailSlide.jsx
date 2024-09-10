@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Link from "next/link";
 
 const PostThumbnailSlide = ({ title, data }) => {
   return (

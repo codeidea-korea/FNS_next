@@ -1,10 +1,12 @@
 import { clearMetaText } from "@/common/CommonUtils";
 import CategoryDetail from "@/page/etc/CategoryDetail";
+import { redirect } from "next/navigation";
+import AxiosInstance from "@/common/AxiosInstance";
 
 export async function generateMetadata({ params: { key } }) {
   try {
     const res = await AxiosInstance.get(
-      `/api/v1/ui/viewpage/tag_preview_name/${key}`
+      `/api/v1/ui/viewpage/tag_preview_name/${key}`,
     );
     const data = res.data.data;
 
@@ -20,7 +22,8 @@ export async function generateMetadata({ params: { key } }) {
     }
 
     return {
-      title: key + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      title:
+        decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
       description: metaDesc,
       image:
         data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??

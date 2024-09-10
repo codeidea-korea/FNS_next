@@ -1,10 +1,12 @@
 import { clearMetaText } from "@/common/CommonUtils";
 import PostDetail from "@/page/etc/PostDetail";
+import { redirect } from "next/navigation";
+import AxiosInstance from "@/common/AxiosInstance";
 
 export async function generateMetadata({ params: { yy, mm, dd, key } }) {
   try {
     const res = await AxiosInstance.get(
-      `/api/v1/post/preview_name/${yy}${mm}${dd}/${key}`
+      `/api/v1/post/preview_name/${yy}${mm}${dd}/${key}`,
     );
     const data = res.data.data;
     const { post } = data;
