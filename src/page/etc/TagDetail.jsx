@@ -242,10 +242,7 @@ const TagDetail = () => {
                   <ul>
                     {data02.map((item, index) => (
                       <li key={index}>
-                        <a
-                          style={{ cursor: "pointer" }}
-                          onClick={openAppDownModal}
-                        >
+                        <a style={{ cursor: "pointer" }} onClick={open}>
                           <div className="img_box">
                             <img
                               src={item.post_images[0].post_image_url}
