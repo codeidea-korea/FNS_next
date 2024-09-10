@@ -5,9 +5,9 @@ import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "@/common/AxiosInstance";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { clearMetaText } from "@/common/CommonUtils";
 import { useParams, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { clearMetaText } from "@/utils/common";
 
 const TopicDetail = () => {
   const { open } = useContext(AppDownloadModalContext);

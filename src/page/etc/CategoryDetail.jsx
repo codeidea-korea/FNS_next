@@ -4,8 +4,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "../../common/AxiosInstance";
 import { useRouter, useParams } from "next/navigation";
-import { clearMetaText } from "@/common/CommonUtils";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { clearMetaText } from "@/utils/common";
 
 const CategoryDetail = () => {
   const { open } = useContext(AppDownloadModalContext);

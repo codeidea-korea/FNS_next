@@ -1,7 +1,7 @@
-import { clearMetaText } from "@/common/CommonUtils";
 import CategoryDetail from "@/page/etc/CategoryDetail";
 import { redirect } from "next/navigation";
 import AxiosInstance from "@/common/AxiosInstance";
+import { clearMetaText } from "@/utils/common";
 
 export async function generateMetadata({ params: { key } }) {
   try {

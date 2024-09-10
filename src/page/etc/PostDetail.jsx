@@ -5,8 +5,8 @@ import { componentMap } from "@/common/componentMap";
 import AxiosInstance from "../../common/AxiosInstance";
 import { useParams, useRouter } from "next/navigation";
 import Post from "../../components/common/Post";
-import { clearMetaText } from "@/common/CommonUtils";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { clearMetaText } from "@/utils/common";
 
 const PostDetail = () => {
   const navigate = useRouter();
