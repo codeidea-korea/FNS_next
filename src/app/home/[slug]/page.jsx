@@ -6,7 +6,7 @@ export async function generateMetadata({ params }) {
 
   const { title, description } = getMetaInfo(originKey);
   const url = decodeURIComponent(
-    "https://fns-renew.codeidea.io/home/" + params.slug
+    "https://www.fashionandstyle.com/home/" + params.slug
   );
 
   return makeMetadata(title, description, url);
