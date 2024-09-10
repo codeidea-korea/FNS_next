@@ -215,7 +215,7 @@ const TagDetail = () => {
               <div className={`topic_thumbnail`}>
                 <a style={{ cursor: "pointer" }} onClick={open}>
                   <img
-                    src={data.vw_image_url}
+                    src={data.vw_image_url ?? data.vw_category_page_image_url}
                     alt={data.vw_title + " 이미지"}
                   />
                   <div className="txt_box">

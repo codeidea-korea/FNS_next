@@ -6,7 +6,7 @@ import { clearMetaText } from "@/utils/common";
 export async function generateMetadata({ params: { key } }) {
   try {
     const res = await AxiosInstance.get(
-      `/api/v1/ui/viewpage/tag_preview_name/${key}`,
+      `/api/v1/ui/view/tag_preview_name/${key}`,
     );
     const data = res.data.data;
 
