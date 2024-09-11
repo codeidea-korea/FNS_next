@@ -4,17 +4,21 @@ import ScrollToTop from "@/components/ScrollTop";
 import MainNavigate from "@/components/MainNavigate";
 import { GlobalContextProvider } from "@/context/GlobalContext";
 import AppDownloadModal from "@/components/common/AppDownloadModal";
-import React from "react";
+import React, { ReactNode } from "react";
 import { AppDownloadModalContextProvider } from "@/context/AppDownloadModalContext";
 
-export const ClientLayout = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+export const ClientLayout = (props: Props) => {
   return (
     <>
       <MainNavigate />
       <ScrollToTop />
       <AppDownloadModalContextProvider>
         <AppDownloadModal />
-        <GlobalContextProvider>{children}</GlobalContextProvider>
+        <GlobalContextProvider>{props.children}</GlobalContextProvider>
       </AppDownloadModalContextProvider>
     </>
   );

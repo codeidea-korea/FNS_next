@@ -4,21 +4,30 @@ import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
 
-export async function generateMetadata({ params: { key } }) {
+interface Props {
+  params: { key: string };
+}
+
+export async function generateMetadata({ params }: Props) {
   try {
-    const res = await getApi(`/api/v1/ui/viewpage/topic_preview_name/${key}`);
-    const data = res.data.data;
+    const { data } = await getApi<TopicPreview>(
+      `/api/v1/ui/viewpage/topic_preview_name/${params.key}`,
+    );
+
+    if (data?.data === null) {
+      throw new Error("data.data is null");
+    }
 
     let tempMetaDesc = "";
-    tempMetaDesc += data.vw_title + " ";
-    tempMetaDesc += data.vw_desc + " ";
-    data.vw_filters.map((filter) => {
+    tempMetaDesc += data.data.vw_title + " ";
+    tempMetaDesc += data.data.vw_desc + " ";
+    data.data.vw_filters.map((filter) => {
       tempMetaDesc = tempMetaDesc + filter.vw_flt_name + " ";
     });
 
     // 필터칩태그 각각의 첫번째 포스트 캡션들
     tempMetaDesc +=
-      data.vw_groups
+      data.data.vw_groups
         .flatMap((group) =>
           group.grp_items.map(
             (item) => item.itm_data[0]?.post_desc?.split("\n")[0] || "",
@@ -28,21 +37,22 @@ export async function generateMetadata({ params: { key } }) {
         .join(" ") + " ";
 
     return makeMetadata(
-      decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
+        "",
       clearMetaText(tempMetaDesc),
-      `https://www.fashionandstyle.com/topic/${decodeURIComponent(key)}`,
+      `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}`,
     );
   } catch (error) {
     redirect("/home/10001");
   }
 }
 
-export const generateViewport = () => {
+export function generateViewport(): { width: string; initialScale: number } {
   return {
     width: "device-width",
     initialScale: 1,
   };
-};
+}
 
 export default function Page() {
   return <TopicDetail />;

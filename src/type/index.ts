@@ -26,6 +26,17 @@ interface PostPreview {
   suggest: Suggest;
 }
 
+interface TopicPreview {
+  vw_title: string;
+  vw_filters: VwFilter[];
+  vw_desc: string;
+  vw_groups: Vw[];
+}
+
+interface VwFilter {
+  vw_flt_name: string;
+}
+
 interface Post {
   post_images: PostImage[];
   post_desc: string;
