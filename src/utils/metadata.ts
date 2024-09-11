@@ -1,6 +1,11 @@
-export const getMetaInfo = (originKey) => {
-  let title = "";
-  let description = "";
+import { Metadata } from "next";
+
+export function getMetaInfo(originKey: string): {
+  title: string;
+  description: string;
+} {
+  let title: string;
+  let description: string;
 
   if (originKey === "10001") {
     title = "패션앤스타일 | Fashion & Style";
@@ -20,22 +25,15 @@ export const getMetaInfo = (originKey) => {
   }
 
   return { title, description };
-};
+}
 
-export const getOriginKey = (slug) => {
-  // URL의 마지막 부분인 slug에서 필요한 변환을 수행
-  let originKey = decodeURIComponent(slug);
-  // originKey = originKey.replaceAll('-', ' '); // 주석 해제 시 하이픈을 공백으로 대체
-  return originKey;
-};
-
-export const makeMetadata = (
-  title,
-  description,
-  url,
+export function makeMetadata(
+  title: string,
+  description: string,
+  url: string,
   image = "",
   date = new Date().toISOString(),
-) => {
+): Metadata {
   return {
     title: title,
     description: description,
@@ -46,8 +44,8 @@ export const makeMetadata = (
       title: title,
       description: description,
       siteName: "패션앤스타일 (Fashion & Style)",
+      images: [image],
     },
-    image: image,
     robots: "index, follow",
     other: {
       copyright:
@@ -58,4 +56,4 @@ export const makeMetadata = (
       build: new Date().toISOString(),
     },
   };
-};
+}

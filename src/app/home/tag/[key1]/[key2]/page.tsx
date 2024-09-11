@@ -1,8 +1,13 @@
 import Home from "@/page/main/Home";
-import { getMetaInfo, getOriginKey, makeMetadata } from "@/utils/metadata";
+import { getMetaInfo, makeMetadata } from "@/utils/metadata";
+import { Metadata } from "next";
 
-export async function generateMetadata({ params }) {
-  const originKey = getOriginKey(params.key2);
+interface Props {
+  params: { key1: string; key2: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const originKey = decodeURIComponent(params.key2);
 
   const { title, description } = getMetaInfo(originKey);
   const url = decodeURIComponent(
@@ -15,12 +20,12 @@ export async function generateMetadata({ params }) {
   return makeMetadata(title, description, url);
 }
 
-export const generateViewport = () => {
+export function generateViewport(): { width: string; initialScale: number } {
   return {
     width: "device-width",
     initialScale: 1,
   };
-};
+}
 
 export default function Page() {
   return <Home />;

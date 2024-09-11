@@ -1,4 +1,4 @@
-export function clickUseApp(deepLink?: string) {
+export function clickUseApp(deepLink?: string): void {
   deepLink = !deepLink ? process.env.NEXT_PUBLIC_APP_URL : deepLink;
   window.open(deepLink, "_blank");
 }
