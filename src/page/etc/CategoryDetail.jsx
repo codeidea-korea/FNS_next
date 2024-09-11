@@ -141,7 +141,7 @@ const CategoryDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open(deepLink);
+          open(deepLink, false);
           setIsAlertShown(true);
         }
       }

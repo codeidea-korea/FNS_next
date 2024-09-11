@@ -50,11 +50,6 @@ const TopicDetail = () => {
   }, [key]);
 
   useEffect(() => {
-    /*
-     * tagId : ex)"설현의 모든 것" 에 대한 key값으로 예상됨
-     * itm_data.post_images 배열을 보면 이미지가 한개가 아니라 여러개이다.
-     * 이 배열에서 post_image_acc[0]?.post_image_acc_tag[0]?.tag_id 값이 현재 들어온 ex)"설현의 모든 것"의 key값인 tagId와 같은 데이터 한개를 골라내야된다.
-     * */
     if (data && data.vw_groups?.length > 0) {
       data.vw_groups.forEach((vg) => {
         vg.grp_items.forEach((gi) => {
@@ -250,7 +245,6 @@ const TopicDetail = () => {
       const restrictedElement = document.querySelector(
         ".main.section_box .category_cont",
       );
-
       if (restrictedElement) {
         const sectionBottom =
           restrictedElement.getBoundingClientRect().bottom +
@@ -267,7 +261,7 @@ const TopicDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open(deepLink);
+          open(deepLink, false);
           setIsAlertShown(true);
         }
       }
@@ -285,12 +279,7 @@ const TopicDetail = () => {
       {data && filters?.length > 0 && groups?.length > 0 && (
         <>
           <div className="detail_top">
-            {/* 단독 페이지인데 뒤로가기가 필요한가? */}
-            <div className="btn_wrap">
-              {/*<button onClick={() => navigate(-1)} className="prev_btn">
-                                    <img src="/img/prev_arrow_w.svg" alt="이전페이지로 이동"/>
-                                </button>*/}
-            </div>
+            <div className="btn_wrap"></div>
 
             <section className={"visual_type"}>
               <div className={`topic_thumbnail`}>
@@ -318,10 +307,6 @@ const TopicDetail = () => {
           <div className="bottom_category">
             <h3>{data.vw_title}</h3>
             <div className="cate_wrap">
-              {/* button 태그변경시 클래스만 유지. */}
-              {/*<button className="prev_btn" onClick={() => navigate(-1)}>
-                                    <img src="/img/prev_arrow.svg" alt="이전페이지로 이동"/>
-                                </button>*/}
               <Swiper
                 slidesPerView={"auto"}
                 spaceBetween={12}

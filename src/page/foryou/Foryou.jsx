@@ -5,9 +5,11 @@ import Post from "@/components/common/Post";
 import RecommendTopics from "@/components/common/RecommendTopics";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { getApi } from "@/utils/apis";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const Foryou = () => {
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink } = useContext(GlobalContext);
   const [posts01, setPosts01] = useState([]);
   const [posts02, setPosts02] = useState([]);
   const [topics, setTopics] = useState([]);
@@ -48,7 +50,7 @@ const Foryou = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open();
+          open(deepLink, false);
           setIsAlertShown(true);
         }
       }
