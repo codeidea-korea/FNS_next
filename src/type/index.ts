@@ -21,6 +21,25 @@ interface TagPreview {
   created_at: string;
 }
 
+interface PostPreview {
+  post: Post;
+  suggest: Suggest;
+}
+
+interface Post {
+  post_images: PostImage[];
+  post_desc: string;
+  created_at: string;
+}
+
+interface PostImage {
+  post_image_url: string;
+}
+
+interface Suggest {
+  vw_groups: Vw[];
+}
+
 interface Vw {
   grp_items: Grp[];
 }

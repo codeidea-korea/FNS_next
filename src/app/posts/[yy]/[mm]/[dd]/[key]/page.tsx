@@ -3,26 +3,34 @@ import { redirect } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
+import { Metadata } from "next";
 
-export async function generateMetadata({ params: { yy, mm, dd, key } }) {
+interface Props {
+  params: { yy: string; mm: string; dd: string; key: string };
+}
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata | undefined> {
   try {
-    const res = await getApi(
-      `/api/v1/post/preview_name/${yy}${mm}${dd}/${key}`,
+    const response = await getApi<PostPreview>(
+      `/api/v1/post/preview_name/${params.yy}${params.mm}${params.dd}/${params.key}`,
     );
-    const data = res.data.data;
-    const { post } = data;
-    const { suggest } = data;
+    const data = response.data.data;
+
+    if (data === null) {
+      throw new Error("response is null");
+    }
+
+    const { post, suggest } = data;
 
     let metaTitle = "";
     let metaDesc = "";
     if (post.post_images?.length > 0 && suggest?.vw_groups?.length > 0) {
-      /* meta title */
       metaTitle = post.post_desc?.split("\n")[0];
       metaTitle =
         clearMetaText(metaTitle) + " | 패션앤스타일 (Fashion & Style)";
 
-      /* meta desc */
-      /* desc = post_desc 텍스트 전부 + 첫번째 태그 1번 포스트캡션 + 두번째 태그 1번 포스트캡션 */
       metaDesc = post.post_desc + " ";
 
       suggest.vw_groups.map((vwGroup, idx) => {
@@ -39,7 +47,7 @@ export async function generateMetadata({ params: { yy, mm, dd, key } }) {
       return makeMetadata(
         decodeURIComponent(metaTitle) ?? "",
         clearMetaText(metaDesc ?? ""),
-        `https://www.fashionandstyle.com/posts/${yy}/${mm}/${dd}/${decodeURIComponent(key)}`,
+        `https://www.fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}`,
         post?.post_images[0]?.post_image_url,
         post?.created_at ?? "",
       );
