@@ -5,9 +5,11 @@ import { componentMap } from "@/common/componentMap";
 import { useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { getApi } from "@/utils/apis";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const Main = ({ apiUrl }) => {
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink } = useContext(GlobalContext);
   const navigate = useRouter();
   const [frameComponents, setFrameComponents] = useState([]);
 
@@ -54,7 +56,9 @@ const Main = ({ apiUrl }) => {
                       <DynamicFrameComponent
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
-                        openAppDownModalFn={open}
+                        openAppDownModalFn={() => {
+                          open(deepLink, false);
+                        }}
                       />,
                     );
                   }
