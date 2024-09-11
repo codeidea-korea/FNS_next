@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { clearMetaText } from "@/utils/common";
 
 export function getMetaInfo(originKey: string): {
   title: string;
@@ -56,4 +57,18 @@ export function makeMetadata(
       build: new Date().toISOString(),
     },
   };
+}
+
+export function getMetaDescription(tagPreview: TagPreview): string {
+  let metaDesc = "";
+  if (tagPreview && tagPreview.vw_groups?.length > 0) {
+    const top5Data = tagPreview.vw_groups[2].grp_items[0].itm_data;
+
+    top5Data.map((topData) => {
+      metaDesc = metaDesc + topData.post_desc?.split("\n")[0] + " ";
+    });
+
+    return clearMetaText(metaDesc);
+  }
+  return metaDesc;
 }
