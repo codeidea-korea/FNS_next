@@ -2,13 +2,13 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import AxiosInstance from "@/common/AxiosInstance";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useParams, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
+import { getApi } from "@/utils/apis";
 
 const TopicDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
@@ -35,7 +35,7 @@ const TopicDetail = () => {
     ) {
       goMain();
     } else {
-      AxiosInstance.get(`/api/v1/ui/viewpage/topic_preview_name/${key}`)
+      getApi(`/api/v1/ui/viewpage/topic_preview_name/${key}`)
         .then((res) => {
           const contents = res.data.data;
           setData(contents);

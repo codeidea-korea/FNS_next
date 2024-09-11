@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import AxiosInstance from "@/common/AxiosInstance";
 import Post from "@/components/common/Post";
 import RecommendTopics from "@/components/common/RecommendTopics";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { getApi } from "@/utils/apis";
 
 const Foryou = () => {
   const { open } = useContext(AppDownloadModalContext);
@@ -13,12 +13,12 @@ const Foryou = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
-    AxiosInstance.get("/api/v2/latest").then((res1) => {
+    getApi("/api/v2/latest").then((res1) => {
       setPosts01(res1.data.data.post.slice(0, 2));
       setPosts02(res1.data.data.post.slice(2, 6));
     });
 
-    AxiosInstance.get("/api/v1/latest_topic").then((res2) => {
+    getApi("/api/v1/latest_topic").then((res2) => {
       setTopics(res2.data.data.topic.slice(0, 4));
     });
   }, []);

@@ -2,11 +2,11 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import AxiosInstance from "../../common/AxiosInstance";
 import { useRouter, useParams } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
+import { getApi } from "@/utils/apis";
 
 const CategoryDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
@@ -29,7 +29,7 @@ const CategoryDetail = () => {
     ) {
       goMain();
     } else {
-      AxiosInstance.get(`/api/v1/ui/view/tag_preview_name/${key}`)
+      getApi(`/api/v1/ui/view/tag_preview_name/${key}`)
         .then((res) => {
           const contents = res.data.data;
           const userAccount =

@@ -2,11 +2,11 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import AxiosInstance from "../../common/AxiosInstance";
 import { useParams, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
+import { getApi } from "@/utils/apis";
 
 const TagDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
@@ -31,7 +31,7 @@ const TagDetail = () => {
     ) {
       goMain();
     } else {
-      AxiosInstance.get(`/api/v1/ui/view/tag_preview_name/${key}`)
+      getApi(`/api/v1/ui/view/tag_preview_name/${key}`)
         .then((res) => {
           const arrFrameComponents = [];
           const contents = res.data.data;
@@ -104,7 +104,7 @@ const TagDetail = () => {
   useEffect(() => {
     // 태그 상세 - 최하단 포스트 영역
     if (tagId !== "") {
-      AxiosInstance.get(`/api/v1/tag/posts/${tagId}`).then((res) => {
+      getApi(`/api/v1/tag/posts/${tagId}`).then((res) => {
         setData02(res.data.data);
       });
     }

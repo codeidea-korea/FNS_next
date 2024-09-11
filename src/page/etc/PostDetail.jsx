@@ -2,12 +2,12 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import AxiosInstance from "../../common/AxiosInstance";
 import { useParams, useRouter } from "next/navigation";
 import Post from "../../components/common/Post";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
+import { getApi } from "@/utils/apis";
 
 const PostDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
@@ -26,7 +26,7 @@ const PostDetail = () => {
   useEffect(() => {
     if (yy && mm && dd && key) {
       /* 포스트 API 호출 */
-      AxiosInstance.get(`/api/v1/post/preview_name/${yy}${mm}${dd}/${key}`)
+      getApi(`/api/v1/post/preview_name/${yy}${mm}${dd}/${key}`)
         .then((res) => {
           const contents = res.data.data;
           setPost(contents.post);

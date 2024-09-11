@@ -2,9 +2,9 @@
 
 import { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import AxiosInstance from "@/common/AxiosInstance";
 import { useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { getApi } from "@/utils/apis";
 
 /* TODO : 고객사에게 전달받은 내용들
  *   1번 과 25번은 현재  사용중이지 않습니다.
@@ -19,7 +19,7 @@ const Main = ({ apiUrl }) => {
 
   useEffect(() => {
     if (apiUrl) {
-      AxiosInstance.get(apiUrl)
+      getApi(apiUrl)
         .then((res) => {
           const contents = res.data.data;
           const arrFrameComponents = [];

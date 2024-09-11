@@ -1,14 +1,12 @@
-import AxiosInstance from "@/common/AxiosInstance";
 import TopicDetail from "@/page/etc/TopicDetail";
 import { redirect } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
+import { getApi } from "@/utils/apis";
 
 export async function generateMetadata({ params: { key } }) {
   try {
-    const res = await AxiosInstance.get(
-      `/api/v1/ui/viewpage/topic_preview_name/${key}`,
-    );
+    const res = await getApi(`/api/v1/ui/viewpage/topic_preview_name/${key}`);
     const data = res.data.data;
 
     let tempMetaDesc = "";

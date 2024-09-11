@@ -1,14 +1,12 @@
 import TagDetail from "@/page/etc/TagDetail";
 import { redirect } from "next/navigation";
-import AxiosInstance from "@/common/AxiosInstance";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
+import { getApi } from "@/utils/apis";
 
 export async function generateMetadata({ params: { key } }) {
   try {
-    const res = await AxiosInstance.get(
-      `/api/v1/ui/view/tag_preview_name/${key}`,
-    );
+    const res = await getApi(`/api/v1/ui/view/tag_preview_name/${key}`);
     const data = res.data.data;
 
     let metaDesc = "";
