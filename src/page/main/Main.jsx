@@ -6,12 +6,6 @@ import { useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { getApi } from "@/utils/apis";
 
-/* TODO : 고객사에게 전달받은 내용들
- *   1번 과 25번은 현재  사용중이지 않습니다.
- *   하지만 1번 프레임의 경우 UI가 추천영역의 게시글과 동일하오니, 작업 하실 때 참고 바랍니다.
- *   25번 프레임의 경우 현재 28번 프레임으로 변경되어 사용중입니다.
- * */
-
 const Main = ({ apiUrl }) => {
   const { open } = useContext(AppDownloadModalContext);
   const navigate = useRouter();

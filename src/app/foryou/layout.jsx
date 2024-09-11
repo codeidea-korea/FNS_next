@@ -8,9 +8,5 @@ export const metadata = {
 };
 
 export default function ForyouLayout({ children }) {
-  return (
-    <BaseLayout title={"추천"} gnbHide={true}>
-      {children}
-    </BaseLayout>
-  );
+  return <BaseLayout>{children}</BaseLayout>;
 }
