@@ -2,10 +2,17 @@ import CategoryDetail from "@/page/etc/CategoryDetail";
 import { redirect } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { getApi } from "@/utils/apis";
+import { Metadata } from "next";
 
-export async function generateMetadata({ params: { key } }) {
+interface Props {
+  params: { key: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const res = await getApi(`/api/v1/ui/view/tag_preview_name/${key}`);
+    const res = await getApi<TagPreview>(
+      `/api/v1/ui/view/tag_preview_name/${params.key}`,
+    );
     const data = res.data.data;
 
     let metaDesc = "";
@@ -21,12 +28,14 @@ export async function generateMetadata({ params: { key } }) {
 
     return {
       title:
-        decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
+        decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
+        "",
       description: metaDesc,
-      image:
-        data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
-        data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
-      date: data?.created_at ?? "",
+      openGraph: {
+        images:
+          data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
+          data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
+      },
     };
   } catch (error) {
     redirect("/home/10001");
