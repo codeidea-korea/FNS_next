@@ -1,9 +1,5 @@
 "use client";
 
-import Lottie from "lottie-react";
-import LottieLogo from "../assets/json/logo.json";
-import React, { useEffect, useState } from "react";
-
 /* 접속 url 혹은 메뉴를 이용하여 해당 페이지에서 호출할 api url을 조회 */
 export const getApiUrl = async () => {
   const mainGnbIds = ["/home/10001", "/home/10002", "/home/10003"]; // 기본 메인 메뉴 3개
@@ -68,27 +64,4 @@ export const formatDateString = (postedTimeStr) => {
   }
 
   return `${postedTime.getMonth() + 1}월 ${postedTime.getDate()}일`;
-};
-
-/* 로딩 에니메이션 효과를 보여주고 0.6초 후 제거 */
-export const showLoadingAnimation = () => {
-  const LoadingComponent = () => {
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 600);
-
-      return () => clearTimeout(timer);
-    }, []);
-
-    if (!isLoading) return null;
-
-    return (
-      <div id="loading_lottie">
-        <Lottie speed={5} className="lottie_logo" animationData={LottieLogo} />
-      </div>
-    );
-  };
 };

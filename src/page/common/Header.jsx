@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { GlobalContext } from "@/context/GlobalContext";
@@ -85,9 +84,6 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
 
   // gnb 메뉴 클릭 이벤트
   const clickGnb = (gnbVwTypeCd, gnbVwId, gnbParamValue, gnbName) => {
-    // 로딩
-    showLoadingAnimation();
-
     navigate.push(getMenuLink(gnbVwId, gnbParamValue, gnbName));
   };
 

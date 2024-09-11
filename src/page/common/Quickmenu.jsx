@@ -1,4 +1,3 @@
-import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
@@ -10,9 +9,7 @@ export default function Quickmenu() {
   const url = usePathname();
   const navigate = useRouter();
 
-  // 퀵 메뉴 클릭 이벤트
   function clickQuickMenu(link) {
-    showLoadingAnimation();
     navigate.push(link);
   }
 
