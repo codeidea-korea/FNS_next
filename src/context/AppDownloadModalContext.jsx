@@ -1,17 +1,24 @@
 "use client";
 
-import { createContext, ReactNode, useState } from "react";
+import { createContext, useState } from "react";
+import { isMobileFn } from "@/components/common/AppDownloadModal";
+import { clickUseApp } from "@/utils/common";
 
 export const AppDownloadModalContext = createContext({
   show: false,
-  open: () => {},
+  open: (deepLink) => {},
   close: () => {},
 });
 
 export function AppDownloadModalContextProvider({ children }) {
   const [show, setShow] = useState(false);
 
-  function open() {
+  function open(deepLink, directToApp = true) {
+    if (isMobileFn() && directToApp) {
+      clickUseApp(deepLink);
+      return;
+    }
+
     const { body } = document;
     if (!body.getAttribute("scrollY")) {
       const pageY = window.scrollY;

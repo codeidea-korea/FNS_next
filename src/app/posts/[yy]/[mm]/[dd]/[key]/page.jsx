@@ -2,6 +2,7 @@ import PostDetail from "@/page/etc/PostDetail";
 import { redirect } from "next/navigation";
 import AxiosInstance from "@/common/AxiosInstance";
 import { clearMetaText } from "@/utils/common";
+import { makeMetadata } from "@/utils/metadata";
 
 export async function generateMetadata({ params: { yy, mm, dd, key } }) {
   try {
@@ -35,12 +36,13 @@ export async function generateMetadata({ params: { yy, mm, dd, key } }) {
 
       metaDesc = clearMetaText(metaDesc);
 
-      return {
-        title: metaTitle,
-        desc: metaDesc ?? "",
-        image: post?.post_images[0]?.post_image_url,
-        date: post?.created_at ?? "",
-      };
+      return makeMetadata(
+        decodeURIComponent(metaTitle) ?? "",
+        clearMetaText(metaDesc ?? ""),
+        `https://www.fashionandstyle.com/posts/${yy}/${mm}/${dd}/${decodeURIComponent(key)}`,
+        post?.post_images[0]?.post_image_url,
+        post?.created_at ?? "",
+      );
     }
   } catch (error) {
     redirect("/home/10001");

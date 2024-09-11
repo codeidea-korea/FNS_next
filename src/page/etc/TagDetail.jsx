@@ -6,9 +6,12 @@ import AxiosInstance from "../../common/AxiosInstance";
 import { useParams, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const TagDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink, setDeepLink } = useContext(GlobalContext);
+
   const navigate = useRouter();
   const { key } = useParams();
 
@@ -33,6 +36,7 @@ const TagDetail = () => {
           const arrFrameComponents = [];
           const contents = res.data.data;
           setData(contents);
+          setDeepLink(contents.vw_tag_deep_link);
 
           if (contents && contents.vw_groups?.length > 0) {
             const userAccount =
@@ -78,7 +82,9 @@ const TagDetail = () => {
                       <DynamicFrameComponent
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
-                        openAppDownModalFn={open}
+                        openAppDownModalFn={() => {
+                          open(deepLink);
+                        }}
                       />,
                     );
                   }
@@ -151,7 +157,7 @@ const TagDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open();
+          open(deepLink);
           setIsAlertShown(true);
         }
       }
@@ -213,7 +219,12 @@ const TagDetail = () => {
 
             <section className={"visual_type"}>
               <div className={`topic_thumbnail`}>
-                <a style={{ cursor: "pointer" }} onClick={open}>
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    open(deepLink);
+                  }}
+                >
                   <img
                     src={data.vw_image_url ?? data.vw_category_page_image_url}
                     alt={data.vw_title + " 이미지"}
@@ -242,7 +253,12 @@ const TagDetail = () => {
                   <ul>
                     {data02.map((item, index) => (
                       <li key={index}>
-                        <a style={{ cursor: "pointer" }} onClick={open}>
+                        <a
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            open(deepLink);
+                          }}
+                        >
                           <div className="img_box">
                             <img
                               src={item.post_images[0].post_image_url}

@@ -1,17 +1,15 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React components
-import "swiper/css"; // Import Swiper styles
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
-import { clickUseApp } from "@/utils/common";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { GlobalContext } from "@/context/GlobalContext";
-import { isMobileFn } from "@/components/common/AppDownloadModal";
 
 const Header = ({ title, gnbHide, isContainGnb }) => {
   const { open } = useContext(AppDownloadModalContext);
-  const { gnbs } = useContext(GlobalContext);
+  const { deepLink, gnbs } = useContext(GlobalContext);
   const [newGnb, setNewGnb] = useState([]);
   const url = decodeURIComponent(usePathname());
   const navigate = useRouter();
@@ -200,15 +198,6 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
     };
   }, [lastScroll]);
 
-  /* 앱으로 보기 버튼 클릭 */
-  const clickUseAppBtn = () => {
-    if (isMobileFn()) {
-      clickUseApp();
-    } else {
-      open();
-    }
-  };
-
   return (
     <>
       <header>
@@ -217,7 +206,6 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
             title || gnbHide === true ? "top_area border_type" : "top_area"
           }
         >
-          {/*<Link to={"/recommend"} className="page_prev"><img src="/img/prev_arrow.svg" alt="" /></Link>*/}
           {title && title !== "" ? (
             <div className="title">{title}</div>
           ) : (
@@ -229,7 +217,12 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
                   패션 & 스타일에서 만나보세요!
                 </span>
               </h1>
-              <button type={"button"} onClick={clickUseAppBtn}>
+              <button
+                type={"button"}
+                onClick={() => {
+                  open(deepLink, false);
+                }}
+              >
                 앱으로 보기
               </button>
             </div>

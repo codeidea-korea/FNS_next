@@ -2,6 +2,7 @@ import TagDetail from "@/page/etc/TagDetail";
 import { redirect } from "next/navigation";
 import AxiosInstance from "@/common/AxiosInstance";
 import { clearMetaText } from "@/utils/common";
+import { makeMetadata } from "@/utils/metadata";
 
 export async function generateMetadata({ params: { key } }) {
   try {
@@ -21,15 +22,14 @@ export async function generateMetadata({ params: { key } }) {
       metaDesc = clearMetaText(metaDesc);
     }
 
-    return {
-      title:
-        decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
-      description: metaDesc,
-      image:
-        data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
+    return makeMetadata(
+      decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      clearMetaText(metaDesc ?? ""),
+      `https://www.fashionandstyle.com/tag/${decodeURIComponent(key)}`,
+      data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
         data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
-      date: data?.created_at ?? "",
-    };
+      data?.created_at ?? "",
+    );
   } catch (error) {
     redirect("/home/10001");
   }

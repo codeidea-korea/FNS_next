@@ -2,8 +2,10 @@ import { showLoadingAnimation } from "@/common/CommonUtils.jsx";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { GlobalContext } from "@/context/GlobalContext";
 
 export default function Quickmenu() {
+  const { deepLink } = useContext(GlobalContext);
   const { open } = useContext(AppDownloadModalContext);
   const url = usePathname();
   const navigate = useRouter();
@@ -16,7 +18,13 @@ export default function Quickmenu() {
 
   return (
     <div className="quick_menu">
-      <div className="appdown_box" onClick={open} style={{ cursor: "pointer" }}>
+      <div
+        className="appdown_box"
+        onClick={() => {
+          open(deepLink);
+        }}
+        style={{ cursor: "pointer" }}
+      >
         <img src="/img/fns.svg" alt="패션&스타일 로고" />
         <span>
           데일리 패션과 코디, 최신 뉴스를 만나보세요!

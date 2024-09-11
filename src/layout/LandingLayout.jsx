@@ -2,15 +2,15 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { clickUseApp } from "@/common/CommonUtils";
 
 import "../assets/css/landing.css";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
-import { isMobileFn } from "@/components/common/AppDownloadModal";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const LandingLayout = ({ children }) => {
   const [scT, setScT] = useState(null);
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink } = useContext(GlobalContext);
 
   useEffect(() => {
     setScT(window.scrollY);
@@ -107,15 +107,6 @@ const LandingLayout = ({ children }) => {
     }
   };
 
-  /* 앱으로 보기 버튼 클릭 */
-  const clickUseAppBtn = () => {
-    if (isMobileFn()) {
-      clickUseApp();
-    } else {
-      open();
-    }
-  };
-
   return (
     <>
       <div id="wrap">
@@ -128,7 +119,13 @@ const LandingLayout = ({ children }) => {
                 </a>
               </h1>
               <div className="right_box">
-                <a className="down_btn" href="#" onClick={clickUseAppBtn}>
+                <a
+                  className="down_btn"
+                  href="#"
+                  onClick={() => {
+                    open(deepLink);
+                  }}
+                >
                   앱 다운로드
                 </a>
                 <a className="ham_icon" href="#">
@@ -144,7 +141,13 @@ const LandingLayout = ({ children }) => {
                 <img src="/img/landing/ham_icon_white.svg" alt="" />
               </a>
             </div>
-            <a className="down_btn" href="#" onClick={clickUseAppBtn}>
+            <a
+              className="down_btn"
+              href="#"
+              onClick={() => {
+                open(deepLink);
+              }}
+            >
               앱 다운로드 <img src="/img/landing/right_arrow.svg" alt="" />
             </a>
             <div className="menu_box">

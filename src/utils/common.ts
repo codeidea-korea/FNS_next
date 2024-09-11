@@ -3,7 +3,6 @@ export function clickUseApp(deepLink?: string) {
   window.open(deepLink, "_blank");
 }
 
-/* 메타 태그 내용(텍스트) 정리 */
 export function clearMetaText(text: string): string {
   // 한글, 영어 대소문자, 숫자, 스페이스, 마침표, 쉼표, 한글 자모 ㄱ-ㅎ 제외 모든 문자를 스페이스(공백)으로 치환
   text = text.replace(/[^가-힣ㄱ-ㅎa-zA-Z0-9., ]/g, " ");

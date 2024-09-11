@@ -1,6 +1,8 @@
 import AxiosInstance from "@/common/AxiosInstance";
 import TopicDetail from "@/page/etc/TopicDetail";
 import { redirect } from "next/navigation";
+import { clearMetaText } from "@/utils/common";
+import { makeMetadata } from "@/utils/metadata";
 
 export async function generateMetadata({ params: { key } }) {
   try {
@@ -9,14 +11,15 @@ export async function generateMetadata({ params: { key } }) {
     );
     const data = res.data.data;
 
-    let metaDesc = key + " ";
-    metaDesc += data.vw_title + " ";
+    let tempMetaDesc = "";
+    tempMetaDesc += data.vw_title + " ";
+    tempMetaDesc += data.vw_desc + " ";
     data.vw_filters.map((filter) => {
-      metaDesc = metaDesc + filter.vw_flt_name + " ";
+      tempMetaDesc = tempMetaDesc + filter.vw_flt_name + " ";
     });
 
     // 필터칩태그 각각의 첫번째 포스트 캡션들
-    metaDesc +=
+    tempMetaDesc +=
       data.vw_groups
         .flatMap((group) =>
           group.grp_items.map(
@@ -26,13 +29,11 @@ export async function generateMetadata({ params: { key } }) {
         .filter((desc) => desc !== "")
         .join(" ") + " ";
 
-    return {
-      title:
-        decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
-      description: metaDesc,
-      image: data.vw_image_url ?? "",
-      date: data?.created_at ?? "",
-    };
+    return makeMetadata(
+      decodeURIComponent(key) + " | 패션앤스타일 (Fashion & Style)" ?? "",
+      clearMetaText(tempMetaDesc),
+      `https://www.fashionandstyle.com/topic/${decodeURIComponent(key)}`,
+    );
   } catch (error) {
     redirect("/home/10001");
   }

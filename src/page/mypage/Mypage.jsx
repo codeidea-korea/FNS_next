@@ -1,19 +1,11 @@
 "use client";
 import React, { useContext } from "react";
-import { clickUseApp } from "@/utils/common";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
-import { isMobileFn } from "@/components/common/AppDownloadModal";
+import { GlobalContext } from "@/context/GlobalContext";
 
 export default function Mypage() {
+  const { deepLink } = useContext(GlobalContext);
   const { open } = useContext(AppDownloadModalContext);
-
-  const clickUseAppBtn = () => {
-    if (isMobileFn()) {
-      clickUseApp();
-    } else {
-      open();
-    }
-  };
 
   return (
     <>
@@ -29,7 +21,9 @@ export default function Mypage() {
           <div className="mock_img">
             <img src="/img/main01_img01.png" alt="" />
             <a
-              onClick={clickUseAppBtn}
+              onClick={() => {
+                open(deepLink);
+              }}
               style={{ cursor: "pointer" }}
               className="down_btn"
             >

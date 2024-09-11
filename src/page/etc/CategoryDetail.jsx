@@ -6,9 +6,12 @@ import AxiosInstance from "../../common/AxiosInstance";
 import { useRouter, useParams } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const CategoryDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink, setDeepLink } = useContext(GlobalContext);
+
   const navigate = useRouter();
   const { key } = useParams();
 
@@ -35,6 +38,7 @@ const CategoryDetail = () => {
               ? contents.vw_user_account[0]
               : "";
           setData(contents);
+          setDeepLink(contents.vw_tag_deep_link);
 
           const arrFrameComponents = [];
 
@@ -71,7 +75,9 @@ const CategoryDetail = () => {
                       <DynamicFrameComponent
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
-                        openAppDownModalFn={open}
+                        openAppDownModalFn={() => {
+                          open(deepLink);
+                        }}
                       />,
                     );
                   }
@@ -135,7 +141,7 @@ const CategoryDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open();
+          open(deepLink);
           setIsAlertShown(true);
         }
       }
@@ -186,33 +192,16 @@ const CategoryDetail = () => {
     <>
       {data && frameComponents && frameComponents.length > 0 && (
         <>
-          {/* 상단 타이틀 추가 */}
           <div className="top_detail" style={{ padding: "16px 20px 0 20px" }}>
-            <div className="btn_wrap">
-              {/*<button onClick={() => navigate(-1)} className='prev_btn'>
-                                    <img src="/img/prev_arrow.svg" alt="이전페이지로 이동"/>
-                                </button>*/}
-            </div>
+            <div className="btn_wrap"></div>
             <div className="tit_box">
               <h3>{data.vw_title}</h3>
-              {/*<button className="follow_btn" onClick={openAppDownModal}>팔로우</button>*/}
             </div>
           </div>
-
-          {/* 스크롤시 메뉴 */}
           <div className="scroll_tit" style={{ display: "none" }}>
-            {/*<button onClick={() => navigate(-1)} className='prev_btn'>
-                                <img src="/img/prev_arrow.svg" alt="이전페이지로 이동"/>
-                            </button>*/}
             <h3>{data.vw_title}</h3>
-            {/* 팔로잉 시 클래스 following 추가 */}
-            {/*<button className="follow_btn" onClick={openAppDownModal}>팔로우</button>*/}
           </div>
-
-          <div className="main section_box">
-            {/* 프레임별 컴포넌트들 조합 */}
-            {frameComponents}
-          </div>
+          <div className="main section_box">{frameComponents}</div>
         </>
       )}
     </>

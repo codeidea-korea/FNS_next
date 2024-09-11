@@ -26,7 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
 .env*.local
 
 # vercel
@@ -36,4 +35,19 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# node
+node_modules
+
+#배포관련 폴더 및 소스
+build.sh
+deploy.sh
+deploy
+build
+backup
+
+#사이트관련
+robots.txt
+sitemap.xml
+
 .idea
+.nvmrc

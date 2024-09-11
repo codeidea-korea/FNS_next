@@ -7,10 +7,13 @@ import { useParams, useRouter } from "next/navigation";
 import Post from "../../components/common/Post";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const PostDetail = () => {
-  const navigate = useRouter();
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink, setDeepLink } = useContext(GlobalContext);
+
+  const navigate = useRouter();
   const { yy, mm, dd, key } = useParams();
 
   const [isAlertShown, setIsAlertShown] = useState(false);
@@ -28,6 +31,7 @@ const PostDetail = () => {
           const contents = res.data.data;
           setPost(contents.post);
           setSuggest(contents.suggest);
+          setDeepLink(contents.post.post_deep_link);
 
           const arrFrameComponents = [];
 
@@ -71,7 +75,9 @@ const PostDetail = () => {
                     <DynamicFrameComponent
                       key={`component_${vwGroupIdx}_${grpItemIdx}`}
                       grpItem={grpItem}
-                      openAppDownModalFn={open}
+                      openAppDownModalFn={() => {
+                        open(deepLink);
+                      }}
                     />,
                   );
                 }
@@ -142,7 +148,7 @@ const PostDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open();
+          open(deepLink);
           setIsAlertShown(true);
         }
       }
@@ -164,7 +170,13 @@ const PostDetail = () => {
       {post && post.post_images?.length > 0 && (
         <>
           <div className="main section_box">
-            <Post openAppDownModalFn={open} post={post} showComment={true} />
+            <Post
+              openAppDownModalFn={() => {
+                open(deepLink);
+              }}
+              post={post}
+              showComment={true}
+            />
 
             {frameComponents}
           </div>

@@ -8,9 +8,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useParams, useRouter } from "next/navigation";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { clearMetaText } from "@/utils/common";
+import { GlobalContext } from "@/context/GlobalContext";
 
 const TopicDetail = () => {
   const { open } = useContext(AppDownloadModalContext);
+  const { deepLink, setDeepLink } = useContext(GlobalContext);
+
   let tempIdx = 0;
   let tempIdx2 = 0;
 
@@ -38,6 +41,7 @@ const TopicDetail = () => {
           setData(contents);
           setTagId(contents.vw_filter_except_tags[0]);
           setFilters(contents.vw_filters);
+          setDeepLink(contents.vw_topic_deep_link);
         })
         .catch(() => {
           goMain();
@@ -263,7 +267,7 @@ const TopicDetail = () => {
           event.preventDefault();
           window.scrollTo(0, sectionBottom - window.innerHeight);
 
-          open();
+          open(deepLink);
           setIsAlertShown(true);
         }
       }
@@ -290,7 +294,12 @@ const TopicDetail = () => {
 
             <section className={"visual_type"}>
               <div className={`topic_thumbnail`}>
-                <a style={{ cursor: "pointer" }} onClick={open}>
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    open(deepLink);
+                  }}
+                >
                   <img
                     src={data.vw_image_url}
                     alt={data.vw_title + " 이미지"}
@@ -374,7 +383,9 @@ const TopicDetail = () => {
                           >
                             <DynamicFrameComponent
                               grpItem={grpItem}
-                              openAppDownModalFn={open}
+                              openAppDownModalFn={() => {
+                                open(deepLink);
+                              }}
                             />
                           </div>
                         );
