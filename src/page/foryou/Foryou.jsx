@@ -71,7 +71,9 @@ const Foryou = () => {
             {posts01.map((posts01Item, posts01Idx) => (
               <Post
                 key={posts01Idx}
-                openAppDownModalFn={open}
+                openAppDownModalFn={() => {
+                  open(deepLink, false);
+                }}
                 post={posts01Item}
                 showComment={false}
               />
@@ -79,14 +81,18 @@ const Foryou = () => {
 
             <RecommendTopics
               key={"recommendTopics-key"}
-              openAppDownModalFn={open}
+              openAppDownModalFn={() => {
+                open(deepLink, false);
+              }}
               topics={topics}
             />
 
             {posts02.map((posts02Item, posts02Idx) => (
               <Post
                 key={posts02Idx}
-                openAppDownModalFn={open}
+                openAppDownModalFn={() => {
+                  open(deepLink, false);
+                }}
                 post={posts02Item}
                 showComment={false}
               />

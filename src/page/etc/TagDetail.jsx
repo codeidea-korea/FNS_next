@@ -83,7 +83,7 @@ const TagDetail = () => {
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
                         openAppDownModalFn={() => {
-                          open(deepLink);
+                          open(deepLink, false);
                         }}
                       />,
                     );
@@ -222,7 +222,7 @@ const TagDetail = () => {
                 <a
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    open(deepLink);
+                    open(deepLink, false);
                   }}
                 >
                   <img

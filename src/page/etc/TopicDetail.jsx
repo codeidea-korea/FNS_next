@@ -286,7 +286,7 @@ const TopicDetail = () => {
                 <a
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    open(deepLink);
+                    open(deepLink, false);
                   }}
                 >
                   <img
@@ -369,7 +369,7 @@ const TopicDetail = () => {
                             <DynamicFrameComponent
                               grpItem={grpItem}
                               openAppDownModalFn={() => {
-                                open(deepLink);
+                                open(deepLink, false);
                               }}
                             />
                           </div>

@@ -76,7 +76,7 @@ const PostDetail = () => {
                       key={`component_${vwGroupIdx}_${grpItemIdx}`}
                       grpItem={grpItem}
                       openAppDownModalFn={() => {
-                        open(deepLink);
+                        open(deepLink, false);
                       }}
                     />,
                   );
@@ -172,7 +172,7 @@ const PostDetail = () => {
           <div className="main section_box">
             <Post
               openAppDownModalFn={() => {
-                open(deepLink);
+                open(deepLink, false);
               }}
               post={post}
               showComment={true}

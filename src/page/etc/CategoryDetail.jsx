@@ -76,7 +76,7 @@ const CategoryDetail = () => {
                         key={`component_${vwGroupIdx}_${grpItemIdx}`}
                         grpItem={grpItem}
                         openAppDownModalFn={() => {
-                          open(deepLink);
+                          open(deepLink, false);
                         }}
                       />,
                     );
