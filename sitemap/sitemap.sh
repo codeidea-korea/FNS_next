@@ -1,1 +1,1 @@
-node /home/fasweb/fas_web/sitemap/generate-sitemap.js
+node ./generate-sitemap.js

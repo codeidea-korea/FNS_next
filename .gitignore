@@ -46,8 +46,8 @@ build
 backup
 
 #사이트관련
-robots.txt
-sitemap.xml
+#robots.txt
+#sitemap.xml
 
 .idea
 .nvmrc
