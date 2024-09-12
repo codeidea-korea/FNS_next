@@ -256,7 +256,7 @@ const TagDetail = () => {
                         <a
                           style={{ cursor: "pointer" }}
                           onClick={() => {
-                            open(deepLink);
+                            open(deepLink, false);
                           }}
                         >
                           <div className="img_box">
