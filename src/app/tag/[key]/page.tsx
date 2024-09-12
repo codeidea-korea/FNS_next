@@ -1,12 +1,26 @@
 import TagDetail from "@/page/etc/TagDetail";
 import { redirect } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
-import { getMetaDescription, makeMetadata } from "@/utils/metadata";
+import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
 import { Metadata } from "next";
 
 interface Props {
   params: { key: string };
+}
+
+function getMetaDescription(tagPreview: TagPreview): string {
+  let metaDesc = "";
+  if (tagPreview && tagPreview.vw_groups?.length > 0) {
+    const top5Data = tagPreview.vw_groups[1].grp_items[0].itm_data;
+
+    top5Data.map((topData) => {
+      metaDesc = metaDesc + topData.post_desc?.split("\n")[0] + " ";
+    });
+
+    return clearMetaText(metaDesc);
+  }
+  return metaDesc;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

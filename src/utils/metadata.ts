@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { clearMetaText } from "@/utils/common";
 
 export function getMetaInfo(originKey: string): {
   title: string;
@@ -22,7 +21,7 @@ export function getMetaInfo(originKey: string): {
       "연예인의 일상 속 스타일링 이야기까지! 어디서도 찾기 힘든 패션 스타일 코디 추천, 패션앤스타일(Fashion & Style)에서 경험하세요.";
   } else {
     title = `${originKey} | 패션앤스타일 (Fashion & Style)`;
-    description = `${originKey} | 패션앤스타일(Fashion & Style) 에서 실시간으로 업데이트 되는 패션, 라이프스타일 뉴스를 만나보세요.`;
+    description = `패션앤스타일(Fashion & Style) 에서 실시간으로 업데이트 되는 패션, 라이프스타일 뉴스를 만나보세요.`;
   }
 
   return { title, description };
@@ -57,18 +56,4 @@ export function makeMetadata(
       build: new Date().toISOString(),
     },
   };
-}
-
-export function getMetaDescription(tagPreview: TagPreview): string {
-  let metaDesc = "";
-  if (tagPreview && tagPreview.vw_groups?.length > 0) {
-    const top5Data = tagPreview.vw_groups[2].grp_items[0].itm_data;
-
-    top5Data.map((topData) => {
-      metaDesc = metaDesc + topData.post_desc?.split("\n")[0] + " ";
-    });
-
-    return clearMetaText(metaDesc);
-  }
-  return metaDesc;
 }

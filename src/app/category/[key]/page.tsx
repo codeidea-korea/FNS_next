@@ -2,10 +2,24 @@ import CategoryDetail from "@/page/etc/CategoryDetail";
 import { redirect } from "next/navigation";
 import { getApi } from "@/utils/apis";
 import { Metadata } from "next";
-import { getMetaDescription } from "@/utils/metadata";
+import { clearMetaText } from "@/utils/common";
 
 interface Props {
   params: { key: string };
+}
+
+function getMetaDescription(tagPreview: TagPreview): string {
+  let metaDesc = "";
+  if (tagPreview && tagPreview.vw_groups?.length > 0) {
+    const top5Data = tagPreview.vw_groups[2].grp_items[0].itm_data;
+
+    top5Data.map((topData) => {
+      metaDesc = metaDesc + topData.post_desc?.split("\n")[0] + " ";
+    });
+
+    return clearMetaText(metaDesc);
+  }
+  return metaDesc;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
