@@ -1,27 +1,21 @@
 User-agent: Googlebot
-Disallow: /api/
-
+Allow: /
+Disallow : /api/
 User-agent: Yeti
 Allow: /
-Disallow:
-
+Disallow : /api/
 User-agent: Daumoa
 Allow: /
-Disallow:
-
+Disallow : /api/
 User-agent: Daum
 Allow: /
-Disallow:
-
+Disallow : /api/
 User-agent: FacebookBot
 Allow: /
-Disallow:
-
+Disallow : /api/
 User-agent: facebookexternalhit
 Allow: /
-Disallow:
-
+Disallow : /api/
 User-agent: *
-Disallow: /
-
+Disallow : /api/
 Sitemap: https://fns-renew.codeidea.io/sitemap.xml
