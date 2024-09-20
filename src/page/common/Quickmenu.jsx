@@ -30,13 +30,13 @@ export default function Quickmenu() {
         </span>
       </div>
       <ul>
-        <li className={url.includes("/home/") ? "active" : ""}>
+        <li className={url.includes("/home/") || url === "/" ? "active" : ""}>
           <a
             style={{ cursor: "pointer" }}
             onClick={() => clickQuickMenu("/home/10001")}
           >
             <img
-              src={`/img/home${url.includes("/home/") ? "_on" : ""}.svg`}
+              src={`/img/home${url.includes("/home/") || url === "/" ? "_on" : ""}.svg`}
               alt=""
             />
             홈

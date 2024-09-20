@@ -55,5 +55,8 @@ export function makeMetadata(
       date: date,
       build: new Date().toISOString(),
     },
+    alternates: {
+      canonical: url,
+    },
   };
 }

@@ -15,7 +15,7 @@ const Home = () => {
     if (gnbs && gnbs.length > 0) {
       getApiUrl(gnbs).then((res) => {
         if (res === "/") {
-          window.location.href = "/home/10001";
+          setApiUrl("/home/10001");
         } else {
           setApiUrl(res);
         }

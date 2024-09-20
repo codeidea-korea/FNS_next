@@ -25,7 +25,7 @@ const BaseLayout = (props) => {
       const getIsGnbHide = async () => {
         let gnbHide = true;
 
-        if (["/home/10001", "/home/10002", "/home/10003"].includes(url)) {
+        if (["/", "/home/10001", "/home/10002", "/home/10003"].includes(url)) {
           gnbHide = false;
         } else {
           if (

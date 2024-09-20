@@ -35,7 +35,7 @@ interface Props {
 
 export default function RootLayout(props: Props) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <ClientLayout>{props.children}</ClientLayout>
       </body>

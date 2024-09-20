@@ -1,7 +1,6 @@
 "use client";
 
 import ScrollToTop from "@/components/ScrollTop";
-import MainNavigate from "@/components/MainNavigate";
 import { GlobalContextProvider } from "@/context/GlobalContext";
 import AppDownloadModal from "@/components/common/AppDownloadModal";
 import React, { ReactNode } from "react";
@@ -14,7 +13,6 @@ interface Props {
 export const ClientLayout = (props: Props) => {
   return (
     <>
-      <MainNavigate />
       <ScrollToTop />
       <AppDownloadModalContextProvider>
         <AppDownloadModal />

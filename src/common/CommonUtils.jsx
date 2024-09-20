@@ -7,8 +7,9 @@ export const getApiUrl = async () => {
   const pathSplitSlash = pathname.split("/");
 
   let apiUrl;
-
-  if (mainGnbIds.includes(pathname)) {
+  if (pathname === "/") {
+    apiUrl = "/api/v1/ui/view/10001";
+  } else if (mainGnbIds.includes(pathname)) {
     apiUrl = `/api/v1/ui/view/${pathSplitSlash[pathSplitSlash.length - 1]}`;
   } else {
     apiUrl = `/api/v1/ui/viewpage/tag/${

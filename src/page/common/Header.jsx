@@ -91,8 +91,10 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
   const getMenuClassName = (gnbVwId, gnbParamValue, gnbName) => {
     const linkUrl = getMenuLink(gnbVwId, gnbParamValue, gnbName);
     const replaceUrl = url.replaceAll("-", " ");
-
-    if (linkUrl === replaceUrl) {
+    if (
+      linkUrl === replaceUrl ||
+      (replaceUrl === "/" && linkUrl === "/home/10001")
+    ) {
       return "active";
     } else {
       return "";
@@ -104,7 +106,10 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
     const linkUrl = getMenuLink(gnbVwId, gnbParamValue, gnbName);
     const replaceUrl = url.replaceAll("-", " ");
 
-    if (linkUrl === replaceUrl) {
+    if (
+      linkUrl === replaceUrl ||
+      (replaceUrl === "/" && linkUrl === "/home/10001")
+    ) {
       return (
         <i
           className="underline"
