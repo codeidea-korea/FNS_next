@@ -20,8 +20,8 @@ const PostDetail = () => {
   const [frameComponents, setFrameComponents] = useState([]);
   const [post, setPost] = useState({});
   const [suggest, setSuggest] = useState({});
-  const [metaTitle, setMetaTitle] = useState("");
-  const [metaDesc, setMetaDesc] = useState("");
+  const [_metaTitle, setMetaTitle] = useState("");
+  const [_metaDesc, setMetaDesc] = useState("");
 
   useEffect(() => {
     if (yy && mm && dd && key) {
@@ -127,6 +127,8 @@ const PostDetail = () => {
 
   /* 특정 영역 아래로 스크롤이 내려가면 앱 다운로드 모달 표시 */
   useEffect(() => {
+    let lastScrollTime = 0; // 마지막으로 모달이 떴을 때의 타임스탬프
+
     const handleScroll = () => {
       const restrictedElement = document.querySelector(
         ".main.section_box .post_frame",
@@ -144,12 +146,16 @@ const PostDetail = () => {
             ? window.visualViewport.height - window.innerHeight
             : 0);
 
-        if (currentScroll > sectionBottom + 50) {
-          event.preventDefault();
-          window.scrollTo(0, sectionBottom - window.innerHeight);
+        const now = new Date().getTime(); // 현재 시간
 
-          open(deepLink, false);
-          setIsAlertShown(true);
+        // 스크롤 위치가 조건을 충족하고, 모달이 떴는지 확인
+        if (currentScroll > sectionBottom + 50 && now - lastScrollTime > 1000) {
+          event.preventDefault(); // 스크롤 방지
+          window.scrollTo(0, sectionBottom - window.innerHeight); // 스크롤 위치 조정
+
+          open(deepLink, false); // 모달 표시
+          setIsAlertShown(true); // 모달이 떴음을 기록
+          lastScrollTime = now; // 마지막 스크롤 시간 업데이트
         }
       }
     };
