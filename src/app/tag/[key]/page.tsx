@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       data.data?.created_at ?? "",
     );
   } catch (error) {
-    redirect("/home/10001");
+    redirect("/");
   }
 }
 

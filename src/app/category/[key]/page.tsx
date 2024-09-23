@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
     );
   } catch (error) {
-    redirect("/home/10001");
+    redirect("/");
   }
 }
 

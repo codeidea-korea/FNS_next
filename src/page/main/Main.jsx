@@ -66,13 +66,13 @@ const Main = ({ apiUrl }) => {
               });
             });
           } else {
-            navigate.push("home/10001");
+            navigate.push("");
           }
 
           setFrameComponents(arrFrameComponents);
         })
         .catch(() => {
-          navigate.push("home/10001");
+          navigate.push("/");
         });
     }
   }, [apiUrl]);

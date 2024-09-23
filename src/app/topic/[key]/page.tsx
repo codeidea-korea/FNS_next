@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props) {
       `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}`,
     );
   } catch (error) {
-    redirect("/home/10001");
+    redirect("/");
   }
 }
 

@@ -53,7 +53,7 @@ export async function generateMetadata({
       );
     }
   } catch (error) {
-    redirect("/home/10001");
+    redirect("/");
   }
 }
 
