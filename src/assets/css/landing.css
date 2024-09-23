@@ -1287,7 +1287,10 @@ body.noscroll {
   top: 0;
   padding-top: 30px;
   margin-top: 0;
-  transition: opacity 0.5s 0.5s, top 0.5s 0.5s, margin 0.4s 0s;
+  transition:
+    opacity 0.5s 0.5s,
+    top 0.5s 0.5s,
+    margin 0.4s 0s;
 }
 
 @media all and (max-width: 991px) {
@@ -1363,21 +1366,21 @@ body.noscroll {
   }
 }
 
-#landing #landing .about_layout {
+#landing .about_layout {
   overflow: hidden;
   padding-top: 180px;
 }
-#landing #landing .about_layout .inner {
+#landing .about_layout .inner {
   display: flex;
 }
-#landing #landing .about_layout .tit_box {
+#landing .about_layout .tit_box {
   width: 50%;
   padding-left: 110px;
 }
-#landing #landing .about_layout .video_box {
+#landing .about_layout .video_box {
   position: relative;
 }
-#landing #landing .about_layout .video_box:before {
+#landing .about_layout .video_box:before {
   content: "";
   position: absolute;
   left: 0;
@@ -1386,55 +1389,55 @@ body.noscroll {
   height: 100px;
   background-image: linear-gradient(180deg, transparent 0, #fff 90% 100%);
 }
-#landing #landing .about_layout .right_box {
+#landing .about_layout .right_box {
   width: 50%;
 }
-#landing #landing .about_layout .right_box video {
+#landing .about_layout .right_box video {
   width: 708px;
   max-width: 708px;
 }
-#landing #landing .about_layout .right_box img.mo_ver {
+#landing .about_layout .right_box img.mo_ver {
   display: none;
 }
 
 @media all and (max-width: 1200px) {
-  #landing #landing .about_layout .tit_box {
+  #landing .about_layout .tit_box {
     padding-left: 50px;
   }
 }
 @media all and (max-width: 991px) {
-  #landing #landing .about_layout {
+  #landing .about_layout {
     padding-top: 142px;
   }
-  #landing #landing .about_layout .inner {
+  #landing .about_layout .inner {
     display: block;
   }
-  #landing #landing .about_layout .tit_box {
+  #landing .about_layout .tit_box {
     width: 100%;
     padding-left: 0;
   }
-  #landing #landing .about_layout .right_box {
+  #landing .about_layout .right_box {
     width: 100%;
     margin-top: 48px;
   }
-  #landing #landing .about_layout .video_box:before {
+  #landing .about_layout .video_box:before {
     display: none;
   }
-  #landing #landing .about_layout .right_box video {
+  #landing .about_layout .right_box video {
     position: relative;
     left: -16px;
   }
 
-  #landing #landing .about_layout .right_box img.pc_ver {
+  #landing .about_layout .right_box img.pc_ver {
     display: none;
   }
-  #landing #landing .about_layout .right_box img.mo_ver {
+  #landing .about_layout .right_box img.mo_ver {
     display: block;
     margin: 0 auto;
   }
 }
 @media all and (max-width: 500px) {
-  #landing #landing .about_layout .right_box video {
+  #landing .about_layout .right_box video {
     width: calc(150% + 32px);
     max-width: calc(150% + 32px);
   }
@@ -1497,27 +1500,27 @@ body.noscroll {
   }
 }
 
-#landing #landing .about_layout02 {
+#landing .about_layout02 {
   padding-bottom: 248px;
 }
-#landing #landing .about_layout02 .sns_box {
+#landing .about_layout02 .sns_box {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
   margin-bottom: 34px;
 }
-#landing #landing .about_layout02 .tit_area {
+#landing .about_layout02 .tit_area {
   text-align: center;
 }
-#landing #landing .about_layout02 .tit_area h4 {
+#landing .about_layout02 .tit_area h4 {
   font-size: 26px;
   font-weight: 600;
   line-height: 138.462%;
   letter-spacing: -0.52px;
   color: #000;
 }
-#landing #landing .about_layout02 .tit_area a {
+#landing .about_layout02 .tit_area a {
   display: block;
   font-size: 14px;
   font-weight: 400;
@@ -1527,30 +1530,30 @@ body.noscroll {
   font-family: Pretendard;
 }
 
-#landing #landing .about_layout02 .channel_box {
+#landing .about_layout02 .channel_box {
   margin-top: 148px;
 }
 
-#landing #landing .about_layout02 .channel_box .img_box {
+#landing .about_layout02 .channel_box .img_box {
   width: 878px;
   max-width: 100%;
   margin: 24px auto 0;
 }
-#landing #landing .about_layout02 .channel_box .img_box img.mo_ver {
+#landing .about_layout02 .channel_box .img_box img.mo_ver {
   display: none;
 }
 
 @media all and (max-width: 991px) {
-  #landing #landing .about_layout02 {
+  #landing .about_layout02 {
     padding-bottom: 100px;
   }
-  #landing #landing .about_layout02 .channel_box {
+  #landing .about_layout02 .channel_box {
     margin-top: 100px;
   }
-  #landing #landing .about_layout02 .channel_box .img_box img.pc_ver {
+  #landing .about_layout02 .channel_box .img_box img.pc_ver {
     display: none;
   }
-  #landing #landing .about_layout02 .channel_box .img_box img.mo_ver {
+  #landing .about_layout02 .channel_box .img_box img.mo_ver {
     display: block;
   }
 }
