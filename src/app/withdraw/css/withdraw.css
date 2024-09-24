@@ -1,0 +1,193 @@
+.withdraw {
+  padding: 20px 25px;
+}
+
+.inputBoxEmail {
+  margin-top: 27px;
+  width: 100%;
+  height: 54px;
+  box-sizing: border-box;
+}
+
+#withdrawLogo {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#withdrawTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.getVerifyCode {
+  margin-top: 40px;
+  width: 100%;
+  height: 50px;
+  background-color: #eaecef;
+  border-radius: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#verify {
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#askVerifyCode {
+  margin-top: 34px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b6b6b;
+}
+
+.checkVerifyCode {
+  margin-top: 40px;
+  width: 100%;
+  height: 50px;
+  background-color: #eaecef;
+  border-radius: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#seperateDiv {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#seperateLine {
+  width: 100%;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+#personalInfoTitle {
+  padding-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#noticePersonalInfo {
+  padding-bottom: 30px;
+  color: #6b6b6b;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#tableHead {
+  height: 39px;
+  background-color: #e7e7e7;
+  text-align: center;
+}
+
+#tableBody {
+  margin-top: 50;
+  text-align: center;
+}
+
+#rowValue {
+  text-align: left;
+  padding-left: 30;
+}
+
+#checkBoxDiv {
+  padding-top: 23px;
+  padding-bottom: 40px;
+  display: "flex";
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* #checkBox {
+    width: 24px;
+    height: 24px;
+} */
+
+#checkBox {
+  width: 24px;
+  height: 24px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+#checkBox:checked {
+  background-color: black;
+  border-color: black;
+}
+
+#checkBox:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #efefef;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.custom-table th {
+  background-color: #efefef;
+  font-weight: bold;
+  text-align: center;
+}
+
+.custom-table td.left-cell {
+  text-align: left;
+  padding-left: 16px;
+}
+
+.custom-table td.center-cell {
+  text-align: center;
+}
+
+.dark-mode {
+  background-color: rgba(88, 87, 87, 0.98);
+  color: white;
+}
+
+.toast {
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.toast-message {
+  flex-grow: 1;
+}

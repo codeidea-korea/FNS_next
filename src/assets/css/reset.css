@@ -87,12 +87,12 @@ video,
 main,
 footer,
 header {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -106,53 +106,68 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 html {
-    font-size: 14px;
-    color: #333333;
+  font-size: 14px;
+  color: #333333;
 }
 body {
-    width: 600px;
-    max-width: 100%;
-    min-height: calc(var(--vh, 1vh) * 100);
-    margin: 0 auto;
-    line-height: 1.4;
-    font-family: "Pretendard", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    font-weight: 400;
+  width: 600px;
+  max-width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100);
+  margin: 0 auto;
+  line-height: 1.4;
+  font-family:
+    "Pretendard",
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    "Helvetica Neue",
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    sans-serif;
+  font-weight: 400;
 }
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
-    content: none;
+  content: "";
+  content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 a {
-    text-decoration: none;
-    color:inherit
+  text-decoration: none;
+  color: inherit;
 }
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 button {
-    border: 0 none;
-    padding:0;
-    background-color: transparent;
+  border: 0 none;
+  padding: 0;
+  background-color: transparent;
 }
 button,
 label {
-    cursor: pointer;
+  cursor: pointer;
 }
