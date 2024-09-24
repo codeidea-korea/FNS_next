@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:dev": "env-cmd -f .env.dev next build",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier . --write"
@@ -12,6 +13,7 @@
   "dependencies": {
     "aos": "^3.0.0-beta.6",
     "axios": "^1.7.7",
+    "env-cmd": "^10.1.0",
     "lottie-web": "^5.12.2",
     "next": "^14.2.13",
     "react": "^18",
