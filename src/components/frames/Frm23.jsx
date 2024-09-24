@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const Frm23 = ({ openAppDownModalFn, grpItem }) => {
+  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
+  openAppDownModalFn = () => {};
+
   const [data, setData] = useState([]);
 
   useEffect(() => {

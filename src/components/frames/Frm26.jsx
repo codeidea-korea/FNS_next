@@ -1,5 +1,8 @@
 /* 고객사 코멘트 : 26번은 현재 미사용입니다. 개발할 때 고려하지 않으셔도 좋습니다. */
 const Frm26 = ({ openAppDownModalFn, grpItem }) => {
+  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
+  openAppDownModalFn = () => {};
+
   return (
     <section className={"topic_list same_type"}>
       {grpItem?.itm_title_disp_yn === true && (

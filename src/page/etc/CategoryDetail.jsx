@@ -2,14 +2,15 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { componentMap } from "@/common/componentMap";
-import { useRouter, useParams } from "next/navigation";
-import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
+import { useParams, useRouter } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
 import { getApi } from "@/utils/apis";
 
 const CategoryDetail = () => {
-  const { open } = useContext(AppDownloadModalContext);
+  // const { open } = useContext(AppDownloadModalContext);
+  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
+  open = () => {};
   const { deepLink, setDeepLink } = useContext(GlobalContext);
 
   const navigate = useRouter();

@@ -3,12 +3,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Post from "@/components/common/Post";
 import RecommendTopics from "@/components/common/RecommendTopics";
-import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { getApi } from "@/utils/apis";
 import { GlobalContext } from "@/context/GlobalContext";
 
 const Foryou = () => {
-  const { open } = useContext(AppDownloadModalContext);
+  // const { open } = useContext(AppDownloadModalContext);
+  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
+  open = () => {};
   const { deepLink } = useContext(GlobalContext);
   const [posts01, setPosts01] = useState([]);
   const [posts02, setPosts02] = useState([]);
