@@ -49,7 +49,6 @@ export async function generateMetadata({
         clearMetaText(metaDesc ?? ""),
         `https://www.fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}`,
         post?.post_images[0]?.post_image_url,
-        post?.created_at ?? "",
       );
     }
   } catch (error) {

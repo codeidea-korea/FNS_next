@@ -32,7 +32,6 @@ export function makeMetadata(
   description: string,
   url: string,
   image = "",
-  date = new Date().toISOString(),
 ): Metadata {
   return {
     title: title,
@@ -48,12 +47,7 @@ export function makeMetadata(
     },
     robots: "index, follow",
     other: {
-      copyright:
-        "Copyrights © 2024 패션앤스타일컴퍼니 주식회사 All Rights Reserved",
       author: "패션앤스타일컴퍼니 주식회사",
-      keywords: description,
-      date: date,
-      build: new Date().toISOString(),
     },
     alternates: {
       canonical: url,
