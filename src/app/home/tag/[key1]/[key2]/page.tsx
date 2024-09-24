@@ -1,5 +1,5 @@
 import Home from "@/page/main/Home";
-import { getMetaInfo, makeMetadata } from "@/utils/metadata";
+import { makeMetadata } from "@/utils/metadata";
 import { Metadata } from "next";
 import { clearMetaText } from "@/utils/common";
 import { getApi } from "@/utils/apis";
@@ -49,7 +49,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ),
       data.data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
-      data.data?.created_at ?? "",
     );
   } catch (error) {
     redirect("/");
