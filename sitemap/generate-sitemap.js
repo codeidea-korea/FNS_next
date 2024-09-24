@@ -26,26 +26,26 @@ async function getUrlsAPI() {
 }
 
 async function generateSitemap() {
-  const sitemapData = await getUrlsAPI();
+  // const sitemapData = await getUrlsAPI();
   const now = new Date();
 
   const sitemapArr = [
     { url: "", lastmod: now },
-    { url: "/", lastmod: now },
+    // { url: "/", lastmod: now },
     // ,{ 'url' : '/index.html','lastmod' : now }
-    { url: "/home/10001", lastmod: now },
-    { url: "/home/10002", lastmod: now },
-    { url: "/home/10003", lastmod: now },
-    { url: "/foryou", lastmod: now },
-    { url: "/mypage", lastmod: now },
-    { url: "/service", lastmod: now },
-    { url: "/privacy", lastmod: now },
-    { url: "/protection", lastmod: now },
+    // { url: "/home/10001", lastmod: now },
+    // { url: "/home/10002", lastmod: now },
+    // { url: "/home/10003", lastmod: now },
+    // { url: "/foryou", lastmod: now },
+    // { url: "/mypage", lastmod: now },
+    // { url: "/service", lastmod: now },
+    // { url: "/privacy", lastmod: now },
+    // { url: "/protection", lastmod: now },
   ];
 
-  sitemapData.forEach((data) => {
-    sitemapArr.push({ url: data?.url, lastmod: now });
-  });
+  // sitemapData.forEach((data) => {
+  //   sitemapArr.push({ url: data?.url, lastmod: now });
+  // });
 
   // 사이트맵 스트림 생성
   const sitemap = new SitemapStream({ hostname: baseUrl });
