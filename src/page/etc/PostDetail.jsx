@@ -11,7 +11,7 @@ import { getApi } from "@/utils/apis";
 const PostDetail = () => {
   // const { open } = useContext(AppDownloadModalContext);
   // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
-  open = () => {};
+  const open = (a, b) => {};
 
   const { deepLink, setDeepLink } = useContext(GlobalContext);
 

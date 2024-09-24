@@ -9,7 +9,7 @@ import { GlobalContext } from "@/context/GlobalContext";
 const Foryou = () => {
   // const { open } = useContext(AppDownloadModalContext);
   // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
-  open = () => {};
+  const open = (a, b) => {};
   const { deepLink } = useContext(GlobalContext);
   const [posts01, setPosts01] = useState([]);
   const [posts02, setPosts02] = useState([]);
