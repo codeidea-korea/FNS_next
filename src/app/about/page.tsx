@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { makeMetadata } from "@/utils/metadata";
 import About from "@/page/landing/About";
-import AboutLayout from "@/layout/AboutLayout";
+import LandingLayout from "@/layout/LandingLayout";
 
 export async function generateMetadata(): Promise<Metadata> {
   return makeMetadata(
@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Page() {
   return (
-    <AboutLayout>
+    <LandingLayout>
       <About />
-    </AboutLayout>
+    </LandingLayout>
   );
 }

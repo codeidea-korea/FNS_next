@@ -1,15 +1,73 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import LottieLogo from "@/assets/json/logo.json";
+import LottieBg from "@/assets/json/about_mo.json";
+
 export default function About() {
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    window.addEventListener("load", windowLoad);
+    window.addEventListener("scroll", windowScroll);
+    return () => {
+      window.removeEventListener("load", windowLoad);
+      window.removeEventListener("scroll", windowScroll);
+    };
+  });
+
+  const windowLoad = () => {
+    setTimeout(function () {
+      document.querySelector(".about_intro")?.classList.add("bgtrans");
+      document.querySelector(".about_intro")?.classList.add("off");
+      document.querySelector(".scroll_more")?.classList.add("off");
+      lottieRef.current?.play();
+    }, 2000);
+  };
+
+  const windowScroll = () => {
+    let winT = window.scrollY;
+    if (winT > 0) {
+      document.querySelector(".about_intro")?.classList.add("bgtrans");
+      document.querySelector(".about_intro")?.classList.add("off");
+      document.querySelector(".scroll_more")?.classList.add("off");
+      lottieRef.current?.play();
+    } else {
+      document.querySelector(".scroll_more")?.classList.remove("off");
+      lottieRef.current?.goToAndPlay(0, true);
+    }
+  };
+
   useEffect(() => {
     AOS.init();
   }, []);
+
+  useEffect(() => {
+    document.querySelector("#lottie")?.classList.add("hidden");
+  }, []);
+
   return (
     <>
+      <div
+        className="lottemobg_box"
+        style={{ width: "100%", overflow: "hidden" }}
+      >
+        <Lottie
+          id="lottiebgmo"
+          lottieRef={lottieRef}
+          animationData={LottieBg}
+          loop={false}
+          autoplay={false}
+          className="mo_ver"
+          style={{ position: "relative", width: "110%", left: "-5%" }}
+        />
+      </div>
+
       <div className="about_intro">
         <div className="scroll_more">
           스크롤하여 더보기
@@ -18,7 +76,13 @@ export default function About() {
           </i>
         </div>
         <div className="inner">
-          <div id="lottie"></div>
+          <div id="lottie2">
+            <Lottie
+              className="lottie_logo"
+              animationData={LottieLogo}
+              loop={false}
+            />
+          </div>
           <p>
             감각적인 에디터와 개발자들이
             <br />
@@ -68,7 +132,11 @@ export default function About() {
               추천해 콘텐츠를 맞춤화합니다.
             </p>
           </div>
-          <div className="right_box" data-aos="fade-up">
+          <div
+            className="right_box"
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+          >
             <img className="pc_ver" src="/img/landing/about_img01.png" alt="" />
             <img
               className="mo_ver"
@@ -95,7 +163,11 @@ export default function About() {
               정보를 전달합니다.
             </p>
           </div>
-          <div className="right_box" data-aos="fade-up">
+          <div
+            className="right_box"
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+          >
             <img className="pc_ver" src="/img/landing/about_img02.png" alt="" />
             <img
               className="mo_ver"
@@ -196,7 +268,11 @@ export default function About() {
                 @women.streetwear
               </a>
             </div>
-            <div className="img_box" data-aos="fade-up">
+            <div
+              className="img_box"
+              data-aos="fade-up"
+              data-aos-anchor-placement="center-bottom"
+            >
               <img
                 className="pc_ver"
                 src="/img/landing/about_channel01.png"
@@ -220,7 +296,11 @@ export default function About() {
                 fashionandstyle.official
               </a>
             </div>
-            <div className="img_box" data-aos="fade-up">
+            <div
+              className="img_box"
+              data-aos="fade-up"
+              data-aos-anchor-placement="center-bottom"
+            >
               <img
                 className="pc_ver"
                 src="/img/landing/about_channel02.png"
@@ -244,7 +324,11 @@ export default function About() {
                 카카오스토리
               </a>
             </div>
-            <div className="img_box" data-aos="fade-up">
+            <div
+              className="img_box"
+              data-aos="fade-up"
+              data-aos-anchor-placement="center-bottom"
+            >
               <img
                 className="pc_ver"
                 src="/img/landing/about_channel03.png"
@@ -280,7 +364,11 @@ export default function About() {
                 @women.streetwear
               </a>
             </div>
-            <div className="img_box" data-aos="fade-up">
+            <div
+              className="img_box"
+              data-aos="fade-up"
+              data-aos-anchor-placement="center-bottom"
+            >
               <img
                 className="pc_ver"
                 src="/img/landing/about_channel04.png"

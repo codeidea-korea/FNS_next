@@ -76,8 +76,10 @@ body.noscroll {
 
 @media all and (max-width: 991px) {
   #landing header {
-    display: none;
     padding: 10px 0 6px;
+  }
+  #landing:not(.about) header {
+    display: none;
   }
   #landing header .right_box {
     gap: 8px;
@@ -154,8 +156,8 @@ body.noscroll {
 } */
 #landing .mobile_menu .menu_box > ul ul {
   /* overflow:hidden;
-    height:0;
-    padding:0 0; */
+  height:0;
+  padding:0 0; */
   display: none;
   padding: 8px 0;
   transition: all 0.5s;
@@ -292,7 +294,7 @@ body.noscroll {
 }
 
 @media all and (max-width: 991px) {
-  #landing footer {
+  #landing:not(.about) footer {
     display: none;
   }
   #landing footer .fnb {
@@ -601,7 +603,7 @@ body.noscroll {
   height: 100%;
   background-image: linear-gradient(90deg, transparent 20% 0, #fff 80% 100%);
 }
-#landing .main_con03 .back_slide li {
+#landing .main_con03 .back_slide .swiper-slide {
   overflow: hidden;
   height: 347px;
   border: 1px solid #e7e7e7;
@@ -1017,7 +1019,7 @@ body.noscroll {
   height: 100%;
   background-image: linear-gradient(90deg, transparent 20% 0, #fff 80% 100%);
 }
-#landing .main_con06 .back_slide li {
+#landing .main_con06 .back_slide .swiper-slide {
   overflow: hidden;
   height: 347px;
   border: 1px solid #e7e7e7;
@@ -1243,7 +1245,7 @@ body.noscroll {
   min-height: 100vh;
 }
 
-#landing .about_intro #lottie {
+#landing .about_intro #lottie2 {
   background-color: #ffffff;
   width: 360px;
   height: 320px;
@@ -1275,7 +1277,7 @@ body.noscroll {
   font-weight: 900;
 }
 
-#landing .about_intro.off #lottie {
+#landing .about_intro.off #lottie2 {
   background-color: transparent;
   width: 185px;
   height: 150px;
@@ -1339,6 +1341,7 @@ body.noscroll {
   left: 0;
   top: 0;
   width: 100%;
+  z-index: 0;
   padding-bottom: 217%;
 }
 #landing #lottiebgmo {
@@ -1367,6 +1370,8 @@ body.noscroll {
 }
 
 #landing .about_layout {
+  z-index: 2;
+  position: relative;
   overflow: hidden;
   padding-top: 180px;
 }
@@ -1665,6 +1670,7 @@ body.noscroll {
 #landing .video_box video {
   position: relative;
   top: 3px;
+  max-width: 100%;
 }
 
 #landing .main_con03 .pagerContainer {
