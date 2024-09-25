@@ -217,7 +217,7 @@ export default function About() {
                 href="https://www.facebook.com/fashionstylepage"
                 target="_blank"
               >
-                fashionstylepage
+                fashionandstyle.official
               </a>
             </div>
             <div className="img_box" data-aos="fade-up">
@@ -238,10 +238,10 @@ export default function About() {
             <div className="tit_area">
               <h4>카카오</h4>
               <a href="http://pf.kakao.com/_vfdPl" target="_blank">
-                카카오채널 (패션앤스타일)
+                카카오채널
               </a>
               <a href="https://story.kakao.com/ch/fashionstyle" target="_blank">
-                카카오스토리 (fashionnstyle)
+                카카오스토리
               </a>
             </div>
             <div className="img_box" data-aos="fade-up">
