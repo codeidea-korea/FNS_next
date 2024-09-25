@@ -31,6 +31,8 @@ interface TopicPreview {
   vw_filters: VwFilter[];
   vw_desc: string;
   vw_groups: Vw[];
+  vw_filter_except_tags: number[];
+  vw_topic_deep_link: string;
 }
 
 interface VwFilter {
@@ -38,6 +40,7 @@ interface VwFilter {
 }
 
 interface Post {
+  post_id: number;
   post_images: PostImage[];
   post_desc: string;
   created_at: string;
@@ -60,6 +63,7 @@ interface Grp {
 }
 
 interface Itm {
+  tag_id: string;
   post_desc: string;
   image_url_def: string;
   image_url1: string;

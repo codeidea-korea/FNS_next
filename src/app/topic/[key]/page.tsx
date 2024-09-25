@@ -6,13 +6,20 @@ import { getApi } from "@/utils/apis";
 
 interface Props {
   params: { key: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params, searchParams }: Props) {
+  if (!searchParams?.id) {
+    redirect("/");
+  }
+
   try {
     const { data } = await getApi<TopicPreview>(
       `/api/v1/ui/viewpage/topic_preview_name/${params.key}`,
     );
+
+    const tagId = data.data?.vw_topic_deep_link.split("_").pop();
 
     if (data?.data === null) {
       throw new Error("data.data is null");
@@ -40,7 +47,7 @@ export async function generateMetadata({ params }: Props) {
       decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
         "",
       clearMetaText(tempMetaDesc),
-      `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}`,
+      `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}?id=${tagId}`,
     );
   } catch (error) {
     redirect("/");

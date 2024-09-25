@@ -7,11 +7,17 @@ import { Metadata } from "next";
 
 interface Props {
   params: { yy: string; mm: string; dd: string; key: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: Props): Promise<Metadata | undefined> {
+  if (!searchParams?.id) {
+    redirect("/");
+  }
+
   try {
     const response = await getApi<PostPreview>(
       `/api/v1/post/preview_name/${params.yy}${params.mm}${params.dd}/${params.key}`,
@@ -47,7 +53,7 @@ export async function generateMetadata({
       return makeMetadata(
         decodeURIComponent(metaTitle) ?? "",
         clearMetaText(metaDesc ?? ""),
-        `https://www.fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}`,
+        `https://www.fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}?id=${post.post_id}`,
         post?.post_images[0]?.post_image_url,
       );
     }

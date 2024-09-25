@@ -7,6 +7,7 @@ import { makeMetadata } from "@/utils/metadata";
 
 interface Props {
   params: { key: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 function getMetaDescription(tagPreview: TagPreview): string {
@@ -23,17 +24,27 @@ function getMetaDescription(tagPreview: TagPreview): string {
   return metaDesc;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  if (!searchParams?.id) {
+    redirect("/");
+  }
+
   try {
     const { data } = await getApi<TagPreview>(
       `/api/v1/ui/view/tag_preview_name/${params.key}`,
     );
+    const tagId =
+      data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.tag_id ?? "";
+
     return makeMetadata(
       decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
         "",
       data.data ? getMetaDescription(data.data) : "",
       decodeURIComponent(
-        `https://www.fashionandstyle.com/category/${params.key}`,
+        `https://www.fashionandstyle.com/category/${params.key}?id=${tagId}`,
       ),
       data.data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
