@@ -3,11 +3,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
-import "../assets/css/landing.css";
+import "@/assets/css/landing.css";
 import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 import { GlobalContext } from "@/context/GlobalContext";
+import { usePathname } from "next/navigation";
 
-const LandingLayout = ({ children }) => {
+export default function LandingLayout({ children }) {
+  const pathname = usePathname();
   const [scT, setScT] = useState(null);
   const { open } = useContext(AppDownloadModalContext);
   const { deepLink } = useContext(GlobalContext);
@@ -110,7 +112,12 @@ const LandingLayout = ({ children }) => {
   return (
     <>
       <div id="wrap">
-        <div id="landing">
+        <div
+          id="landing"
+          className={
+            pathname === "/about" || pathname === "/landing" ? "about" : ""
+          }
+        >
           <header>
             <div className="inner">
               <h1>
@@ -244,13 +251,6 @@ const LandingLayout = ({ children }) => {
                   </ul>
                 </li>
               </ul>
-              {/* <div className="devider"></div>
-                            <h4>비즈니스</h4>
-                            <ul>
-                                <li>
-                                    <a href="./aboutus.html">회사소개</a>
-                                </li>
-                            </ul> */}
             </div>
           </div>
 
@@ -312,12 +312,13 @@ const LandingLayout = ({ children }) => {
                   </div>
                 </div>
                 <div className="right_link">
+                  <Link href="/about">회사소개</Link>
+                  <Link href="/landing">서비스및채널소개</Link>
                   <Link href="/service">이용약관</Link>
                   <Link href="/privacy">개인정보처리방침</Link>
                   <Link href="/protection">
                     청소년 보호정책(책임자: 윤정원)
                   </Link>
-                  {/* <a href="./aboutus.html">회사소개</a> */}
                 </div>
               </div>
               <div className="address">
@@ -369,5 +370,4 @@ const LandingLayout = ({ children }) => {
       </div>
     </>
   );
-};
-export default LandingLayout;
+}

@@ -1,15 +1,121 @@
-import React from "react";
-import Metatag from "@/components/Metatag";
-import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React components
-import "swiper/css"; // Import Swiper styles
+"use client";
+
+import { useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 
-const Landing = () => {
+export default function Landing() {
+  const mc03mobTxt = ["일상룩", "셀럽룩", "키워드"];
+  const mc06mobTxt = ["최근조회", "관심태그", "라이브러리"];
+
+  useEffect(() => {
+    const main04_li = document.querySelectorAll(".main_con04 .list_box li");
+    const main04_i = document.querySelector(".main_con04 .img_box i");
+
+    main04_li.forEach((item) => {
+      item.addEventListener("click", main04Click);
+    });
+    main04_i.addEventListener("scroll", main04Scroll);
+
+    return () => {
+      main04_li.forEach((item) => {
+        item.removeEventListener("click", main04Click);
+      });
+      main04_i.removeEventListener("scroll", main04Scroll);
+    };
+  });
+
+  const main04Click = (e) => {
+    const num = e.currentTarget.getAttribute("data-index");
+    const imgH = document.querySelector(
+      ".main_con04 .img_box i img",
+    ).clientHeight;
+    const sct = [
+      0,
+      (imgH / 4.33).toFixed(),
+      (imgH / 1.832).toFixed(),
+      (imgH / 1.564).toFixed(),
+    ];
+
+    document
+      .querySelector(".main_con04 .img_box i")
+      .scrollTo({ top: sct[num], behavior: "smooth" });
+  };
+
+  const main04Scroll = (e) => {
+    const imgH = document.querySelector(
+      ".main_con04 .img_box i img",
+    ).clientHeight;
+    const scrollT = [
+      0,
+      (imgH / 4.33).toFixed(),
+      (imgH / 1.832).toFixed(),
+      (imgH / 1.564).toFixed(),
+    ];
+
+    if (e.currentTarget.scrollTop >= scrollT[3]) {
+      document.querySelector(".main_con04 .list_box").classList.remove("path1");
+      document.querySelector(".main_con04 .list_box").classList.remove("path2");
+      document.querySelector(".main_con04 .list_box").classList.remove("path3");
+      document.querySelector(".main_con04 .list_box").classList.add("path4");
+      document
+        .querySelectorAll(".main_con04 .list_box li")
+        .forEach((item, index) => {
+          if (index === 3) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+    } else if (e.currentTarget.scrollTop >= scrollT[2]) {
+      document.querySelector(".main_con04 .list_box").classList.remove("path1");
+      document.querySelector(".main_con04 .list_box").classList.remove("path2");
+      document.querySelector(".main_con04 .list_box").classList.remove("path4");
+      document.querySelector(".main_con04 .list_box").classList.add("path3");
+      document
+        .querySelectorAll(".main_con04 .list_box li")
+        .forEach((item, index) => {
+          if (index === 2) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+    } else if (e.currentTarget.scrollTop >= scrollT[1]) {
+      document.querySelector(".main_con04 .list_box").classList.remove("path1");
+      document.querySelector(".main_con04 .list_box").classList.remove("path3");
+      document.querySelector(".main_con04 .list_box").classList.remove("path4");
+      document.querySelector(".main_con04 .list_box").classList.add("path2");
+      document
+        .querySelectorAll(".main_con04 .list_box li")
+        .forEach((item, index) => {
+          if (index === 1) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+    } else {
+      document.querySelector(".main_con04 .list_box").classList.remove("path2");
+      document.querySelector(".main_con04 .list_box").classList.remove("path3");
+      document.querySelector(".main_con04 .list_box").classList.remove("path4");
+      document.querySelector(".main_con04 .list_box").classList.add("path1");
+      document
+        .querySelectorAll(".main_con04 .list_box li")
+        .forEach((item, index) => {
+          if (index === 0) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+    }
+  };
+
   return (
     <>
-      <Metatag title={"패션앤스타일 (Fashion & Style)"} image={""} />
-
       <section className="main_con01">
         <div className="inner">
           <div>
@@ -53,7 +159,7 @@ const Landing = () => {
         <img className="mo_ver" src="/img/landing/main02_img01_mo.png" alt="" />
       </section>
 
-      <section className="main_con03 pc_only">
+      <section className="main_con03 pc_only" data-active="1">
         <div className="inner">
           <div className="tit_box">
             <h3>
@@ -81,17 +187,53 @@ const Landing = () => {
               <img src="/img/landing/iOS_Mock.png" alt="" />
               <Swiper
                 className="center_slide"
-                loop={true}
+                loop={false}
                 slidesPerView={1}
                 spaceBetween={0}
                 centeredSlides={true}
-                // pagination={{
-                //     el: ".pager",
-                //     clickable: true,
-                //     renderBullet: (index, className) => (
-                //         `<span class="${className}"><b>${mc03mobTxt[index]}</b></span>`
-                //     ),
-                // }}
+                pagination={{
+                  el: ".main_con03.pc_only .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc03mobTxt[index]}</b></span>`,
+                }}
+                navigation={{
+                  nextEl: ".main_con03.pc_only .next",
+                  prevEl: ".main_con03.pc_only .prev",
+                }}
+                modules={[Pagination, Navigation]}
+                onSwiper={(swiper) => {
+                  swiper.slideTo(1);
+                }}
+                onSlideChange={(swiper) => {
+                  var activeIndex = swiper.activeIndex;
+                  document
+                    .querySelector(".main_con03")
+                    .setAttribute("data-active", activeIndex);
+                }}
+              >
+                <SwiperSlide>
+                  <img src="/img/landing/main03_img01.png" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/img/landing/main03_img02.png" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/img/landing/main03_img03.png" alt="" />
+                </SwiperSlide>
+              </Swiper>
+            </div>
+            <div className="back_slide">
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={100}
+                centeredSlides={true}
+                pagination={{
+                  el: ".main_con03.pc_only .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc03mobTxt[index]}</b></span>`,
+                }}
                 navigation={{
                   nextEl: ".main_con03.pc_only .next",
                   prevEl: ".main_con03.pc_only .prev",
@@ -112,19 +254,6 @@ const Landing = () => {
                 </SwiperSlide>
               </Swiper>
             </div>
-            <div className="back_slide">
-              <ul className="swiper-wrapper">
-                <li className="swiper-slide">
-                  <img src="/img/landing/main03_img01.png" alt="" />
-                </li>
-                <li className="swiper-slide">
-                  <img src="/img/landing/main03_img02.png" alt="" />
-                </li>
-                <li className="swiper-slide">
-                  <img src="/img/landing/main03_img03.png" alt="" />
-                </li>
-              </ul>
-            </div>
           </div>
           <div className="pagerContainer">
             <div className="pager"></div>
@@ -132,7 +261,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="main_con03_mobile mobile_only">
+      <section className="main_con03_mobile mobile_only" data-active="1">
         <div className="inner">
           <div className="tit_box">
             <h3>
@@ -158,32 +287,43 @@ const Landing = () => {
             </span>
             <div className="center_box">
               <img src="/img/landing/iOS_Mock.png" alt="" />
-              <div className="center_slide">
-                <ul className="swiper-wrapper">
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main03_img01.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main03_img02.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main03_img03.png" alt="" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="back_slide">
-              <ul className="swiper-wrapper">
-                <li className="swiper-slide">
+              <Swiper
+                className="center_slide"
+                loop={false}
+                slidesPerView={1}
+                spaceBetween={0}
+                centeredSlides={true}
+                pagination={{
+                  el: ".main_con03_mobile .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc03mobTxt[index]}</b></span>`,
+                }}
+                navigation={{
+                  nextEl: ".main_con03_mobile .next",
+                  prevEl: ".main_con03_mobile .prev",
+                }}
+                modules={[Pagination, Navigation]}
+                onSwiper={(swiper) => {
+                  swiper.slideTo(1);
+                }}
+                onSlideChange={(swiper) => {
+                  var activeIndex = swiper.activeIndex;
+                  document
+                    .querySelector(".main_con03_mobile")
+                    .setAttribute("data-active", activeIndex);
+                }}
+              >
+                <SwiperSlide>
                   <img src="/img/landing/main03_img01.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main03_img02.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main03_img03.png" alt="" />
-                </li>
-              </ul>
+                </SwiperSlide>
+              </Swiper>
             </div>
           </div>
           <div className="pager"></div>
@@ -217,16 +357,16 @@ const Landing = () => {
               </i>
             </div>
             <ul className="list_box">
-              <li className="active">
+              <li className="active" data-index="0">
                 <span>키워드 팔로우</span>
               </li>
-              <li>
+              <li data-index="1">
                 <span>인기 TOP 5</span>
               </li>
-              <li>
+              <li data-index="2">
                 <span>연관 토픽</span>
               </li>
-              <li>
+              <li data-index="3">
                 <span>연관 브랜드</span>
               </li>
             </ul>
@@ -263,7 +403,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="main_con06 pc_only">
+      <section className="main_con06 pc_only" data-active="1">
         <div className="inner">
           <div className="tit_box">
             <h3>
@@ -289,32 +429,74 @@ const Landing = () => {
             </span>
             <div className="center_box">
               <img src="/img/landing/iOS_Mock.png" alt="" />
-              <div className="center_slide">
-                <ul className="swiper-wrapper">
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img01.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img02.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img03.png" alt="" />
-                  </li>
-                </ul>
-              </div>
+              <Swiper
+                className="center_slide"
+                loop={false}
+                slidesPerView={1}
+                spaceBetween={0}
+                centeredSlides={true}
+                pagination={{
+                  el: ".main_con06.pc_only .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc06mobTxt[index]}</b></span>`,
+                }}
+                navigation={{
+                  nextEl: ".main_con06.pc_only .next",
+                  prevEl: ".main_con06.pc_only .prev",
+                }}
+                modules={[Pagination, Navigation]}
+                onSwiper={(swiper) => {
+                  swiper.slideTo(1);
+                }}
+                onSlideChange={(swiper) => {
+                  var activeIndex = swiper.activeIndex;
+                  document
+                    .querySelector(".main_con06")
+                    .setAttribute("data-active", activeIndex);
+                }}
+              >
+                <SwiperSlide>
+                  <img src="/img/landing/main06_img01.png" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/img/landing/main06_img02.png" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/img/landing/main06_img03.png" alt="" />
+                </SwiperSlide>
+              </Swiper>
             </div>
             <div className="back_slide">
-              <ul className="swiper-wrapper">
-                <li className="swiper-slide">
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={100}
+                centeredSlides={true}
+                pagination={{
+                  el: ".main_con06.pc_only .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc06mobTxt[index]}</b></span>`,
+                }}
+                navigation={{
+                  nextEl: ".main_con06.pc_only .next",
+                  prevEl: ".main_con06.pc_only .prev",
+                }}
+                modules={[Pagination, Navigation]}
+                onSwiper={(swiper) => {
+                  swiper.slideTo(1);
+                }}
+              >
+                <SwiperSlide>
                   <img src="/img/landing/main06_img01.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main06_img02.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main06_img03.png" alt="" />
-                </li>
-              </ul>
+                </SwiperSlide>
+              </Swiper>
             </div>
           </div>
           <div className="pagerContainer">
@@ -323,7 +505,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="main_con06_mobile mobile_only">
+      <section className="main_con06_mobile mobile_only" data-active="1">
         <div className="inner">
           <div className="tit_box">
             <h3>
@@ -349,32 +531,43 @@ const Landing = () => {
             </span>
             <div className="center_box">
               <img src="/img/landing/iOS_Mock.png" alt="" />
-              <div className="center_slide">
-                <ul className="swiper-wrapper">
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img01.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img02.png" alt="" />
-                  </li>
-                  <li className="swiper-slide">
-                    <img src="/img/landing/main06_img03.png" alt="" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="back_slide">
-              <ul className="swiper-wrapper">
-                <li className="swiper-slide">
+              <Swiper
+                className="center_slide"
+                loop={false}
+                slidesPerView={1}
+                spaceBetween={0}
+                centeredSlides={true}
+                pagination={{
+                  el: ".main_con06_mobile .pager",
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className}"><b>${mc06mobTxt[index]}</b></span>`,
+                }}
+                navigation={{
+                  nextEl: ".main_con06_mobile .next",
+                  prevEl: ".main_con06_mobile .prev",
+                }}
+                modules={[Pagination, Navigation]}
+                onSwiper={(swiper) => {
+                  swiper.slideTo(1);
+                }}
+                onSlideChange={(swiper) => {
+                  var activeIndex = swiper.activeIndex;
+                  document
+                    .querySelector(".main_con06_mobile")
+                    .setAttribute("data-active", activeIndex);
+                }}
+              >
+                <SwiperSlide>
                   <img src="/img/landing/main06_img01.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main06_img02.png" alt="" />
-                </li>
-                <li className="swiper-slide">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img src="/img/landing/main06_img03.png" alt="" />
-                </li>
-              </ul>
+                </SwiperSlide>
+              </Swiper>
             </div>
           </div>
           <div className="pager"></div>
@@ -408,5 +601,4 @@ const Landing = () => {
       </section>
     </>
   );
-};
-export default Landing;
+}
