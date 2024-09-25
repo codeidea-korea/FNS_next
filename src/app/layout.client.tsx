@@ -15,8 +15,10 @@ export const ClientLayout = (props: Props) => {
     <>
       <ScrollToTop />
       <AppDownloadModalContextProvider>
-        <AppDownloadModal />
-        <GlobalContextProvider>{props.children}</GlobalContextProvider>
+        <GlobalContextProvider>
+          <AppDownloadModal />
+          {props.children}
+        </GlobalContextProvider>
       </AppDownloadModalContextProvider>
     </>
   );
