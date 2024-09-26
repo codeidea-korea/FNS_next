@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
           <div className="right_link">
             <Link href="/about">회사소개</Link>
-            <Link href="/app">서비스 및 채널 소개</Link>
+            <Link href="/app">서비스 소개</Link>
             <Link href="/service">이용약관</Link>
             <Link href="/privacy">개인정보처리방침</Link>
             <Link href="/protection">청소년 보호정책(책임자: 윤정원)</Link>
