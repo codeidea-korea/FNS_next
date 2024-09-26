@@ -1,5 +1,6 @@
 import Home from "@/page/main/Home";
 import { getMetaInfo, makeMetadata } from "@/utils/metadata";
+import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import { WebPage, WithContext } from "schema-dts";
 
@@ -11,6 +12,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const originKey = decodeURIComponent(params.slug);
 
   const { title, description } = getMetaInfo(originKey);
+
+  if (title === "" && description === "") {
+    redirect("/");
+  }
+
   const url = decodeURIComponent(
     "https://www.fashionandstyle.com/home/" + params.slug,
   );
@@ -19,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  return [{ slug: "10001" }, { slug: "10002" }, { slug: "10003" }];
+  return [{ slug: "10002" }, { slug: "10003" }];
 }
 
 export function generateViewport(): { width: string; initialScale: number } {

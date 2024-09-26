@@ -2,7 +2,7 @@
 
 /* 접속 url 혹은 메뉴를 이용하여 해당 페이지에서 호출할 api url을 조회 */
 export const getApiUrl = async () => {
-  const mainGnbIds = ["/home/10001", "/home/10002", "/home/10003"]; // 기본 메인 메뉴 3개
+  const mainGnbIds = ["/home/10002", "/home/10003"]; // 기본 메인 메뉴 3개
   const pathname = window.location.pathname;
   const pathSplitSlash = pathname.split("/");
 

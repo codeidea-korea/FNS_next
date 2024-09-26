@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
-import Header from "../page/common/Header";
-import Quickmenu from "../page/common/Quickmenu";
+import Header from "@/page/common/Header";
+import Quickmenu from "@/page/common/Quickmenu";
 import { usePathname } from "next/navigation";
 import { GlobalContext } from "@/context/GlobalContext";
 
@@ -25,7 +25,7 @@ const BaseLayout = (props) => {
       const getIsGnbHide = async () => {
         let gnbHide = true;
 
-        if (["/", "/home/10001", "/home/10002", "/home/10003"].includes(url)) {
+        if (["/", "/home/10002", "/home/10003"].includes(url)) {
           gnbHide = false;
         } else {
           if (

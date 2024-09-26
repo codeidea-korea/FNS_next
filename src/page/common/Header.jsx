@@ -128,7 +128,7 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
     } else if (gnbParamValue && gnbName) {
       return `/home/tag/${gnbParamValue}/${gnbName}`;
     } else {
-      return `/home/10001`;
+      return `/`;
     }
   };
 
