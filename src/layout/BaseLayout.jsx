@@ -5,6 +5,7 @@ import Header from "@/page/common/Header";
 import Quickmenu from "@/page/common/Quickmenu";
 import { usePathname } from "next/navigation";
 import { GlobalContext } from "@/context/GlobalContext";
+import Footer from "@/page/common/Footer";
 
 const BaseLayout = (props) => {
   const { gnbs } = useContext(GlobalContext);
@@ -70,6 +71,7 @@ const BaseLayout = (props) => {
       />
       {props.children}
       <Quickmenu />
+      <Footer />
     </>
   );
 };

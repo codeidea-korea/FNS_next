@@ -228,6 +228,99 @@ header .gnb .swiper-slide.active a {
   }
 }
 
+/* #=========================================#
+        FOOTER
+#=========================================# */
+.footer {
+  position: relative;
+  z-index: 50;
+  padding: 24px 20px 130px;
+  background-color: #fff;
+}
+.footer .fnb {
+  display: block;
+}
+.footer .fnb .sns_link {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+.footer .fnb .right_link {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  margin-top: 14px;
+  flex-direction: column;
+}
+.footer .fnb .right_link a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 200%;
+  letter-spacing: -0.21px;
+  color: #6b6b6b;
+}
+.footer .fnb .right_link .cs_btn {
+  position: relative;
+}
+.footer .fnb .right_link .cs_btn a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer .fnb .right_link .cs_btn a.on img {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.footer .fnb .right_link .cs_btn p {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  padding: 5px;
+  border: 1px solid #ababab;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: -0.21px;
+  color: #6b6b6b;
+  white-space: nowrap;
+  background-color: #f6f6f6;
+}
+.footer .address {
+  margin-top: 20px;
+  color: #6b6b6b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 200%;
+  letter-spacing: -0.18px;
+}
+.footer .address > p {
+  font-weight: 700;
+}
+.footer .address ul {
+  display: block;
+  width: 620px;
+  max-width: 100%;
+}
+.footer .address ul li:nth-of-type(2) {
+  margin-bottom: 30px;
+}
+.footer .address ul li p {
+  display: flex;
+}
+.footer .address ul li span {
+  white-space: unset;
+}
+.footer .address ul li span:first-of-type {
+  width: 120px;
+}
+.footer .address ul li span:last-of-type {
+  width: calc(100% - 120px);
+}
+
 /* ------------------------------------------------------------
         퀵메뉴
 ------------------------------------------------------------ */
