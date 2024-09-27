@@ -3,7 +3,7 @@ import { makeMetadata } from "@/utils/metadata";
 import { Metadata } from "next";
 import { clearMetaText } from "@/utils/common";
 import { getApi } from "@/utils/apis";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: { key1: string; key2: string };
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
     );
   } catch (error) {
-    redirect("/");
+    notFound();
   }
 }
 

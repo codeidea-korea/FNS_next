@@ -1,6 +1,6 @@
 import Home from "@/page/main/Home";
 import { getMetaInfo, makeMetadata } from "@/utils/metadata";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { WebPage, WithContext } from "schema-dts";
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, description } = getMetaInfo(originKey);
 
   if (title === "" && description === "") {
-    redirect("/");
+    notFound();
   }
 
   const url = decodeURIComponent(

@@ -1,5 +1,5 @@
 import PostDetail from "@/page/etc/PostDetail";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
@@ -15,7 +15,7 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata | undefined> {
   if (!searchParams?.id) {
-    redirect("/");
+    notFound();
   }
 
   try {
@@ -58,7 +58,7 @@ export async function generateMetadata({
       );
     }
   } catch (error) {
-    redirect("/");
+    notFound();
   }
 }
 

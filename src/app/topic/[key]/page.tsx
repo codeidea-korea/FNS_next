@@ -1,5 +1,5 @@
 import TopicDetail from "@/page/etc/TopicDetail";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
@@ -11,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params, searchParams }: Props) {
   if (!searchParams?.id) {
-    redirect("/");
+    notFound();
   }
 
   try {
@@ -50,7 +50,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
       `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}?id=${tagId}`,
     );
   } catch (error) {
-    redirect("/");
+    notFound();
   }
 }
 

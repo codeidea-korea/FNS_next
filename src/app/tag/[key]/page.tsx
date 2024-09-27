@@ -1,5 +1,5 @@
 import TagDetail from "@/page/etc/TagDetail";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { makeMetadata } from "@/utils/metadata";
 import { getApi } from "@/utils/apis";
@@ -29,7 +29,7 @@ export async function generateMetadata({
   searchParams,
 }: Props): Promise<Metadata> {
   if (!searchParams?.id) {
-    redirect("/");
+    notFound();
   }
 
   try {
@@ -49,7 +49,7 @@ export async function generateMetadata({
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
     );
   } catch (error) {
-    redirect("/");
+    notFound();
   }
 }
 
