@@ -123,7 +123,9 @@ const Header = ({ title, gnbHide, isContainGnb }) => {
 
   // 메뉴에 적용시킬 link url
   const getMenuLink = (gnbVwId, gnbParamValue, gnbName) => {
-    if (["10001", "10002", "10003"].includes(gnbVwId)) {
+    if (["10001"].includes(gnbVwId)) {
+      return "/";
+    } else if (["10002", "10003"].includes(gnbVwId)) {
       return `/home/${gnbVwId}`;
     } else if (gnbParamValue && gnbName) {
       return `/home/tag/${gnbParamValue}/${gnbName}`;

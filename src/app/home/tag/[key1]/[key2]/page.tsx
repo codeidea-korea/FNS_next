@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "",
       clearMetaText(metaDescription ?? ""),
       decodeURIComponent(
-        "https://www.fashionandstyle.com/home/tag/" +
+        "https://fashionandstyle.com/home/tag/" +
           params.key1 +
           "/" +
           params.key2,

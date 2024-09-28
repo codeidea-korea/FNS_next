@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const url = decodeURIComponent(
-    "https://www.fashionandstyle.com/home/" + params.slug,
+    "https://fashionandstyle.com/home/" + params.slug,
   );
 
   return makeMetadata(title, description, url);
@@ -39,7 +39,7 @@ export default function Page({ params }: Props) {
   const originKey = decodeURIComponent(params.slug);
   const { title, description } = getMetaInfo(originKey);
   const url = decodeURIComponent(
-    "https://www.fashionandstyle.com/home/" + params.slug,
+    "https://fashionandstyle.com/home/" + params.slug,
   );
 
   const jsonLd: WithContext<WebPage> = {

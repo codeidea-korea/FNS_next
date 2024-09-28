@@ -44,7 +44,7 @@ export async function generateMetadata({
       decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
         "",
       clearMetaText(metaDescription ?? ""),
-      `https://www.fashionandstyle.com/tag/${decodeURIComponent(params.key)}?id=${tagId}`,
+      `https://fashionandstyle.com/tag/${decodeURIComponent(params.key)}?id=${tagId}`,
       data.data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,
     );
