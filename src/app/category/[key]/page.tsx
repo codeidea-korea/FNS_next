@@ -44,7 +44,7 @@ export async function generateMetadata({
         "",
       data.data ? getMetaDescription(data.data) : "",
       decodeURIComponent(
-        `https://fashionandstyle.com/category/${params.key}?id=${tagId}`,
+        `https://www.fashionandstyle.com/category/${params.key}?id=${tagId}`,
       ),
       data.data?.vw_groups[1]?.grp_items[0]?.itm_data[0]?.image_url_def ??
         data.data?.vw_groups[0]?.grp_items[0]?.itm_data[0]?.image_url1,

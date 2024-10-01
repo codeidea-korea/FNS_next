@@ -47,7 +47,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
       decodeURIComponent(params.key) + " | 패션앤스타일 (Fashion & Style)" ??
         "",
       clearMetaText(tempMetaDesc),
-      `https://fashionandstyle.com/topic/${decodeURIComponent(params.key)}?id=${tagId}`,
+      `https://www.fashionandstyle.com/topic/${decodeURIComponent(params.key)}?id=${tagId}`,
     );
   } catch (error) {
     notFound();

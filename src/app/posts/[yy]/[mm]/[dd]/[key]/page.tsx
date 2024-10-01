@@ -53,7 +53,7 @@ export async function generateMetadata({
       return makeMetadata(
         decodeURIComponent(metaTitle) ?? "",
         clearMetaText(metaDesc ?? ""),
-        `https://fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}?id=${post.post_id}`,
+        `https://www.fashionandstyle.com/posts/${params.yy}/${params.mm}/${params.dd}/${decodeURIComponent(params.key)}?id=${post.post_id}`,
         post?.post_images[0]?.post_image_url,
       );
     }
