@@ -8,11 +8,10 @@ import { useParams, useRouter } from "next/navigation";
 import { clearMetaText } from "@/utils/common";
 import { GlobalContext } from "@/context/GlobalContext";
 import { getApi } from "@/utils/apis";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const TopicDetail = () => {
-  // const { open } = useContext(AppDownloadModalContext);
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
-  const open = (a, b) => {};
+  const { open } = useContext(AppDownloadModalContext);
   const { deepLink, setDeepLink } = useContext(GlobalContext);
 
   let tempIdx = 0;

@@ -9,9 +9,6 @@ import { formatDateString } from "@/common/CommonUtils";
 
 /* 포스트 상세 */
 const Post = ({ openAppDownModalFn, post, showComment }) => {
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
-  openAppDownModalFn = () => {};
-
   const [postRateClass, setPostRateClass] = useState("");
   const [desc, setDesc] = useState([]);
   const [swiperActive, setSwiperActive] = useState(0);

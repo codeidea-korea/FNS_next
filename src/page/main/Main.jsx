@@ -5,11 +5,10 @@ import { componentMap } from "@/common/componentMap";
 import { useRouter } from "next/navigation";
 import { getApi } from "@/utils/apis";
 import { GlobalContext } from "@/context/GlobalContext";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const Main = ({ apiUrl }) => {
-  // const { open } = useContext(AppDownloadModalContext);
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
-  const open = (a, b) => {};
+  const { open } = useContext(AppDownloadModalContext);
   const { deepLink } = useContext(GlobalContext);
   const navigate = useRouter();
   const [frameComponents, setFrameComponents] = useState([]);

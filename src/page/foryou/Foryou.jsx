@@ -5,11 +5,10 @@ import Post from "@/components/common/Post";
 import RecommendTopics from "@/components/common/RecommendTopics";
 import { getApi } from "@/utils/apis";
 import { GlobalContext } from "@/context/GlobalContext";
+import { AppDownloadModalContext } from "@/context/AppDownloadModalContext";
 
 const Foryou = () => {
-  // const { open } = useContext(AppDownloadModalContext);
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'open = () => {};'
-  const open = (a, b) => {};
+  const { open } = useContext(AppDownloadModalContext);
   const { deepLink } = useContext(GlobalContext);
   const [posts01, setPosts01] = useState([]);
   const [posts02, setPosts02] = useState([]);

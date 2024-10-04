@@ -2,9 +2,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const Frm12 = ({ openAppDownModalFn, grpItem }) => {
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
-  openAppDownModalFn = () => {};
-
   return (
     <section className="popular_list">
       {grpItem?.itm_title_disp_yn === true ? (

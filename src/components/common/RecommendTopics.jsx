@@ -1,8 +1,5 @@
 /* 추천 토픽 */
 const RecommendTopics = ({ openAppDownModalFn, topics }) => {
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
-  openAppDownModalFn = () => {};
-
   return (
     <section className={`topic_list same_type type02`}>
       <h3 className="main_tit">추천 토픽</h3>

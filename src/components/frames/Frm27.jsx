@@ -1,9 +1,6 @@
 import React from "react";
 
 const Frm27 = ({ openAppDownModalFn, grpItem }) => {
-  // TODO: 인터랙션 모달 노출을 원할 경우 아래 코드 제거 'openAppDownModalFn = () => {};'
-  openAppDownModalFn = () => {};
-
   return (
     <section className={`topic_list same_type`}>
       {grpItem?.itm_title_disp_yn === true ? (
