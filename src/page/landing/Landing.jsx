@@ -125,7 +125,7 @@ export default function Landing() {
               <br />
               <img src="/img/landing/full_logo.svg" alt="Fashion&Style" />
               <a
-                href="https://fashionandstyle.app.link/tRmnVZvYFLb"
+                href="https://fashionandstyle.onelink.me/OGHw/gotoapp?utm_source=websitef&utm_medium=website_gotoapp_home"
                 target="_blank"
                 className="down_btn"
               >
@@ -135,7 +135,7 @@ export default function Landing() {
             <div className="mock_img">
               <img src="/img/landing/main01_img01.png" alt="" />
               <a
-                href="https://fashionandstyle.app.link/tRmnVZvYFLb"
+                href="https://fashionandstyle.onelink.me/OGHw/gotoapp?utm_source=websitef&utm_medium=website_gotoapp_home"
                 target="_blank"
                 className="down_btn"
               >
@@ -579,7 +579,7 @@ export default function Landing() {
           <div className="mo_ver">
             <p>지금 시작해보세요</p>
             <a
-              href="https://fashionandstyle.app.link/tRmnVZvYFLb"
+              href="https://fashionandstyle.onelink.me/OGHw/gotoapp?utm_source=websitef&utm_medium=website_gotoapp_home"
               target="_blank"
               className="down_btn"
             >
@@ -590,7 +590,7 @@ export default function Landing() {
             <img src="/img/landing/main01_img01.png" alt="" />
             <p>지금 시작해보세요</p>
             <a
-              href="https://fashionandstyle.app.link/tRmnVZvYFLb"
+              href="https://fashionandstyle.onelink.me/OGHw/gotoapp?utm_source=websitef&utm_medium=website_gotoapp_home"
               target="_blank"
               className="down_btn"
             >
